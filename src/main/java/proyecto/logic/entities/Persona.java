@@ -1,4 +1,4 @@
-package proyecto.data.entities;
+package proyecto.logic.entities;
 
 abstract class Persona {
     protected String id;

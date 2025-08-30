@@ -1,6 +1,6 @@
 package proyecto.presentation.medicos;
 
-import proyecto.data.entities.Medico;
+import proyecto.logic.entities.Medico;
 import proyecto.presentation.AbstractTableModel;
 
 import java.util.List;

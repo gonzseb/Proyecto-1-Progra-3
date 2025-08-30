@@ -1,11 +1,11 @@
 package proyecto.logic;
 
 import proyecto.data.Data;
-import proyecto.data.entities.Farmaceuta;
-import proyecto.data.entities.Medicamento;
-import proyecto.data.entities.Medico;
-import proyecto.data.entities.Paciente;
-import proyecto.data.lists.ListaMedicos;
+import proyecto.logic.entities.Farmaceuta;
+import proyecto.logic.entities.Medicamento;
+import proyecto.logic.entities.Medico;
+import proyecto.logic.entities.Paciente;
+import proyecto.logic.lists.ListaMedicos;
 import proyecto.exceptions.ElementoDuplicadoException;
 import proyecto.exceptions.ValidacionException;
 

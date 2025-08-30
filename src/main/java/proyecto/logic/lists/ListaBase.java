@@ -1,4 +1,4 @@
-package proyecto.data.lists;
+package proyecto.logic.lists;
 
 import proyecto.exceptions.ElementoDuplicadoException;
 import proyecto.exceptions.ElementoNoEncontradoException;

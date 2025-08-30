@@ -1,4 +1,4 @@
-package proyecto.data.entities;
+package proyecto.logic.entities;
 
 public class Farmaceuta extends Persona {
     private String clave;

@@ -1,7 +1,7 @@
 package proyecto.presentation.medicos;
 
 import proyecto.Application;
-import proyecto.data.entities.Medico;
+import proyecto.logic.entities.Medico;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;

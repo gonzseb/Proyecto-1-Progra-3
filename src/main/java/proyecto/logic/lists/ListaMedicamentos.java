@@ -1,6 +1,6 @@
-package proyecto.data.lists;
+package proyecto.logic.lists;
 
-import proyecto.data.entities.Medicamento;
+import proyecto.logic.entities.Medicamento;
 
 public class ListaMedicamentos extends ListaBase<Medicamento> {
     public void agregar(Medicamento m) {

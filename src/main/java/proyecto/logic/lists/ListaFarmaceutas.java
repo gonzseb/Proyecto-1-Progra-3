@@ -1,6 +1,6 @@
-package proyecto.data.lists;
+package proyecto.logic.lists;
 
-import proyecto.data.entities.Farmaceuta;
+import proyecto.logic.entities.Farmaceuta;
 
 public class ListaFarmaceutas extends ListaBase<Farmaceuta> {
     public void agregar(Farmaceuta f) {

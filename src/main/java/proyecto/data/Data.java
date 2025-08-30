@@ -1,7 +1,10 @@
 package proyecto.data;
 
-import proyecto.data.entities.*;
-import proyecto.data.lists.*;
+import proyecto.logic.entities.Medico;
+import proyecto.logic.lists.ListaFarmaceutas;
+import proyecto.logic.lists.ListaMedicamentos;
+import proyecto.logic.lists.ListaMedicos;
+import proyecto.logic.lists.ListaPacientes;
 
 public class Data {
     private ListaMedicos medicos;

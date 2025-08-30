@@ -1,7 +1,7 @@
 package proyecto.presentation.medicos;
 
-import proyecto.data.entities.Medico;
-import proyecto.data.lists.ListaMedicos;
+import proyecto.logic.entities.Medico;
+import proyecto.logic.lists.ListaMedicos;
 import proyecto.exceptions.ElementoDuplicadoException;
 import proyecto.exceptions.ValidacionException;
 import proyecto.logic.Service;
