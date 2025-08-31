@@ -24,9 +24,4 @@ abstract class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    @Override
-    public String toString() {
-        return String.format("ID: %s, Nombre: %s", id, nombre);
-    }
 }

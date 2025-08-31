@@ -1,4 +1,4 @@
-package logic;
+package proyecto.logic.entities;
 
 public class Paciente extends Persona {
     private int edad;
@@ -46,10 +46,5 @@ public class Paciente extends Persona {
 
     public void setHistorialMedico(String historialMedico) {
         this.historialMedico = historialMedico;
-    }
-
-    @Override
-    public String mostrarInfo() {
-        return "Paciente: " + getNombre() + " | Edad: " + edad + " | Tel: " + telefono;
     }
 }

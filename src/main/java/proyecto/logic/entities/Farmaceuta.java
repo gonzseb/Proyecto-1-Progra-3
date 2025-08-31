@@ -1,4 +1,4 @@
-package logic;
+package proyecto.logic.entities;
 
 public class Farmaceuta extends Persona {
     private String clave;
@@ -22,11 +22,7 @@ public class Farmaceuta extends Persona {
         this.clave = nuevaClave;
     }
 
-    @Override
     public String mostrarInfo() {
         return "Farmaceuta: " + getNombre() + " ID: " + getId();
     }
-
-
-
 }

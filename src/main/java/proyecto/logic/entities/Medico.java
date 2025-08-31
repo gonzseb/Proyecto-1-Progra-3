@@ -17,8 +17,10 @@ public class Medico extends Persona {
     }
 
     public String getClave() { return clave; }
+
     public String getEspecialidad() { return especialidad; }
 
     public void setClave(String clave) { this.clave = clave; }
+
     public void setEspecialidad(String especialidad) { this.especialidad = especialidad; }
 }

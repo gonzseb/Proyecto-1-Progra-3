@@ -1,7 +1,6 @@
-package presentation;
+package proyecto.presentation.login;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ViewLogIn {
     private JTextField IdTextField;
@@ -9,6 +8,7 @@ public class ViewLogIn {
     private JLabel IdLabel;
     private JLabel ClaveLabel;
     private JLabel MainLabel;
+    private JPanel panel;
     private JPanel mainPanel; // assuming you have a main panel in your form
 
 

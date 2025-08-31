@@ -1,4 +1,4 @@
-package logic;
+package proyecto.logic.entities;
 
 public enum EstadoReceta {
     CONFECCIONADA,
