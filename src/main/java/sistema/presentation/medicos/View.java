@@ -1,8 +1,8 @@
-package proyecto.presentation.medicos;
+package sistema.presentation.medicos;
 
-import proyecto.Application;
+import sistema.Application;
 
-import proyecto.logic.entities.Medico;
+import sistema.logic.entities.Medico;
 
 import javax.swing.*;
 

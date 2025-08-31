@@ -1,8 +1,8 @@
-package proyecto;
+package sistema;
 
-import proyecto.presentation.medicos.Model;
-import proyecto.presentation.medicos.View;
-import proyecto.presentation.medicos.Controller;
+import sistema.presentation.medicos.Model;
+import sistema.presentation.medicos.View;
+import sistema.presentation.medicos.Controller;
 
 import javax.swing.*;
 import java.awt.*;

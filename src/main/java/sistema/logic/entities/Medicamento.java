@@ -1,4 +1,4 @@
-package proyecto.logic.entities;
+package sistema.logic.entities;
 
 import java.util.Objects;
 

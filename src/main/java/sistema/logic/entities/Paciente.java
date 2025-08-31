@@ -1,4 +1,4 @@
-package proyecto.logic.entities;
+package sistema.logic.entities;
 
 public class Paciente extends Persona {
     private int edad;

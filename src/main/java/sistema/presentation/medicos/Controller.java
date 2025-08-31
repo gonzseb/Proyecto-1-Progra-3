@@ -1,8 +1,8 @@
-package proyecto.presentation.medicos;
+package sistema.presentation.medicos;
 
-import proyecto.logic.entities.Medico;
+import sistema.logic.entities.Medico;
 
-import proyecto.logic.Service;
+import sistema.logic.Service;
 
 import java.util.List;
 

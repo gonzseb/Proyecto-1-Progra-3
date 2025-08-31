@@ -1,9 +1,9 @@
-package proyecto.data;
+package sistema.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import proyecto.logic.entities.Medico;
+import sistema.logic.entities.Medico;
 
 public class Data {
     private List<Medico> medicos;

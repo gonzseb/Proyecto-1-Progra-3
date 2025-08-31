@@ -1,8 +1,8 @@
-package proyecto.logic;
+package sistema.logic;
 
-import proyecto.data.Data;
+import sistema.data.Data;
 
-import proyecto.logic.entities.Medico;
+import sistema.logic.entities.Medico;
 
 import java.util.Comparator;
 import java.util.List;

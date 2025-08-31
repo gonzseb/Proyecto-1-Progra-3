@@ -1,4 +1,4 @@
-package proyecto.presentation;
+package sistema.presentation;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

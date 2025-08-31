@@ -1,4 +1,4 @@
-package proyecto.presentation.login;
+package sistema.presentation.login;
 
 import javax.swing.*;
 

@@ -1,7 +1,7 @@
-package proyecto.presentation.medicos;
+package sistema.presentation.medicos;
 
-import proyecto.logic.entities.Medico;
-import proyecto.presentation.AbstractTableModel;
+import sistema.logic.entities.Medico;
+import sistema.presentation.AbstractTableModel;
 
 import java.util.List;
 
