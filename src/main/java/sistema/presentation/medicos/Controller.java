@@ -30,41 +30,18 @@ public class Controller {
         clear();
     }
 
-    public void read(String id) throws Exception {
-        Medico medico = new Medico();
-        medico.setId(id);
-        try {
-            model.setCurrent(Service.instance().readMedico(medico));
-        } catch (Exception ex) {
-            Medico medico2 = new Medico();
-            medico2.setId(id);
-            model.setCurrent(medico2);
-            throw ex;
-        }
-    }
-
     public void delete(String id) throws Exception {
         Service.instance().deleteMedico(id);
         clear();
     }
 
-//    public void update(Medico medico) {
-//        try {
-//            Service.instance().updateMedico(medico);
-//            clear();
-//            view.mostrarMensaje("Médico actualizado correctamente");
-//        } catch (ValidacionException ex) {
-//            view.mostrarError(ex.getMessage());
-//        } catch (Exception ex) {
-//            view.mostrarError("Error inesperado: " + ex.getMessage());
-//        }
-//    }
+    public void update(Medico medico) throws Exception {
+        Service.instance().updateMedico(medico);
+        clear();
+    }
 
-//
     public void findMedicoByName(String nombreParcial) {
         List<Medico> resultado = Service.instance().findSomeMedicos(nombreParcial);
         model.setList(resultado);
     }
-
-
 }

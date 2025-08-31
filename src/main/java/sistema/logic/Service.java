@@ -32,16 +32,21 @@ public class Service {
         data.getMedicos().add(medico);
     }
 
-    public Medico readMedico(Medico medico) throws Exception {
-        Medico result = data.getMedicos().stream()
-                .filter(i -> i.getId().equals(medico.getId()))
+    // Read is missing...
+
+    public void updateMedico(Medico medico) throws Exception {
+        Medico existente = data.getMedicos().stream()
+                .filter(m -> m.getId().equals(medico.getId()))
                 .findFirst()
                 .orElse(null);
-        if (result != null) {
-            return result;
-        } else {
+
+        if (existente == null) {
             throw new Exception("Médico no existe");
         }
+
+        // Actualizamos los datos
+        existente.setNombre(medico.getNombre());
+        existente.setEspecialidad(medico.getEspecialidad());
     }
 
     public void deleteMedico(String id) throws Exception {
@@ -67,4 +72,6 @@ public class Service {
                 .sorted(Comparator.comparing(Medico::getNombre))
                 .collect(Collectors.toList());
     }
+
+    // -- Otras listas --
 }

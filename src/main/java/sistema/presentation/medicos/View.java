@@ -45,12 +45,19 @@ public class View implements PropertyChangeListener {
                 if (validateForm()) {
                     Medico medico = take();
                     try {
-                        controller.create(medico);
-                        JOptionPane.showMessageDialog(panel, "Médico registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        // Si el modelo ya tiene un current con el mismo ID, entonces lo actualiza
+                        if (model.getCurrent() != null && !model.getCurrent().getId().isEmpty()
+                                && model.getCurrent().getId().equals(medico.getId())) {
+                            controller.update(medico);
+                            JOptionPane.showMessageDialog(panel, "Médico actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            // Si no, se crea
+                            controller.create(medico);
+                            JOptionPane.showMessageDialog(panel, "Médico registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        }
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(panel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
-
                 }
             }
         });

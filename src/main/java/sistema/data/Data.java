@@ -12,7 +12,7 @@ public class Data {
         medicos = new ArrayList<>();
 
         Medico med1 = new Medico("MED001", "Sebastián González", "Odontología");
-        Medico med2 = new Medico("MED002", "David Masis", "Dermatología");
+        Medico med2 = new Medico("MED002", "David Masis", "Otorrinolaringología");
         Medico med3 = new Medico("MED003", "Juan Sánchez", "Oftalmología");
         Medico med4 = new Medico("MED004", "Pablo Bermúdez", "Geriatría");
 
