@@ -8,6 +8,11 @@ public class Farmaceuta extends Persona {
         this.clave = id; // Al crear, la clave inicial es igual al id
     }
 
+    public Farmaceuta() {
+        super("", "");
+        this.clave = "";
+    }
+
     // Getters y Setters
     public String getClave() {
         return clave;

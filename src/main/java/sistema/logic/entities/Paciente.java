@@ -2,16 +2,21 @@ package sistema.logic.entities;
 
 public class Paciente extends Persona {
     private int edad;
-    private String direccion;
     private String telefono;
-    private String historialMedico;
+    private String nacimiento;
 
-    public Paciente(String id, String nombre, int edad, String direccion, String telefono, String historialMedico) {
+    public Paciente(String id, String nombre, int edad, String telefono, String nacimiento) {
         super(id, nombre);
         this.edad = edad;
-        this.direccion = direccion;
         this.telefono = telefono;
-        this.historialMedico = historialMedico;
+        this.nacimiento = nacimiento;
+    }
+
+    public Paciente() {
+        super("", "");       // Llama al constructor de la clase padre con valores vacíos
+        this.edad = 0;       // Edad inicial 0
+        this.telefono = "";  // Teléfono vacío
+        this.nacimiento = ""; // Fecha de nacimiento vacía
     }
 
     // Getters
@@ -19,16 +24,12 @@ public class Paciente extends Persona {
         return edad;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNacimiento() {
+        return nacimiento;
     }
 
     public String getTelefono() {
         return telefono;
-    }
-
-    public String getHistorialMedico() {
-        return historialMedico;
     }
 
     // Setters
@@ -36,15 +37,12 @@ public class Paciente extends Persona {
         this.edad = edad;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNacimiento(String nacimiento) {
+        this.nacimiento = nacimiento;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public void setHistorialMedico(String historialMedico) {
-        this.historialMedico = historialMedico;
-    }
 }
