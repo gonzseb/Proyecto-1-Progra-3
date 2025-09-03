@@ -3,16 +3,14 @@ package sistema.presentation.pacientes;
 import sistema.logic.entities.Paciente;
 
 import sistema.logic.Service;
-import sistema.presentation.pacientes.Pacientes;
-import sistema.presentation.pacientes.ModelPacientes;
 
 import java.util.List;
 
-public class ControllerPacientes {
-    private final Pacientes view;
-    private final ModelPacientes model;
+public class Controller {
+    private final View view;
+    private final Model model;
 
-    public ControllerPacientes(Pacientes view, ModelPacientes model) {
+    public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
 

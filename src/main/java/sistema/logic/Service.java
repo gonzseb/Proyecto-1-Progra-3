@@ -178,6 +178,56 @@ public class Service {
                 .sorted(Comparator.comparing(Paciente::getNombre))
                 .collect(Collectors.toList());
     }
+// Lista medicamentos
 
+    public void createMedicamento(Medicamento medicamento) throws Exception {
+        boolean exists = data.getMedicamentos().stream()
+                .anyMatch(i -> i.getCodigo().equals(medicamento.getCodigo()));
+        if (exists) {
+            throw new Exception("Medicamento ya existe");
+        }
+        data.getMedicamentos().add(medicamento);
+    }
+
+    public List<Medicamento> findAllMedicamentos() {
+        return data.getMedicamentos();
+    }
+
+    public void deleteMedicamento(String codigo) throws Exception {
+        Medicamento medicamento = data.getMedicamentos().stream()
+                .filter(m -> m.getCodigo().equals(codigo))
+                .findFirst()
+                .orElse(null);
+
+        if (medicamento == null) {
+            throw new Exception("Medicamento no existe");
+        }
+
+        data.getMedicamentos().remove(medicamento);
+    }
+
+    public void updateMedicamento(Medicamento medicamento) throws Exception {
+        Medicamento existente = data.getMedicamentos().stream()
+                .filter(f -> f.getCodigo().equals(medicamento.getCodigo()))
+                .findFirst()
+                .orElse(null);
+
+        if (existente == null) {
+            throw new Exception("Medicamento no existe");
+        }
+
+        // Actualizamos los datos
+        existente.setNombre(medicamento.getNombre());
+    }
+
+    public List<Medicamento> findSomeMedicamentos(String nombreParcial) {
+        return data.getMedicamentos().stream()
+                .filter(f -> f.getNombre().toLowerCase().contains(nombreParcial.toLowerCase()))
+                .sorted(Comparator.comparing(Medicamento::getNombre))
+                .collect(Collectors.toList());
+    }
+
+
+//
 
 }

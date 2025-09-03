@@ -1,13 +1,13 @@
 package sistema;
 
-import sistema.presentation.pacientes.Model;
-import sistema.presentation.pacientes.View;
-import sistema.presentation.pacientes.Controller;
+import sistema.presentation.medicamentos.Model;
+import sistema.presentation.medicamentos.View;
+import sistema.presentation.medicamentos.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AppPacientes {
+public class AppMedicamentos {
 
     public static void main(String[] args) {
         try {UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");}

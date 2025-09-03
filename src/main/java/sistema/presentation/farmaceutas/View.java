@@ -1,19 +1,28 @@
-package sistema.presentation.pacientes;
-
-import sistema.Application;
-import sistema.logic.entities.Paciente;
-import sistema.presentation.admin.Controller;
-import sistema.presentation.admin.Model;
-import sistema.presentation.admin.TableModelAdmin;
+package sistema.presentation.farmaceutas;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class Pacientes implements PropertyChangeListener  {
+import sistema.Application;
+import sistema.logic.entities.Farmaceuta;
+
+
+public class View implements PropertyChangeListener {
+    private JTabbedPane tabbedPane1;
     private JPanel panel1;
+    private JTextField IdFieldAdmin;
+    private JTextField nombreField;
+    private JTextField nombreBusquedaField;
+    private JButton buscarButton;
+    private JButton reporteButton;
+    private JButton guardarButton;
+    private JButton limpiarButton;
+    private JButton borrarButton;
+    private JTable farmaceutas;
     private JTextField idPaciente;
     private JTextField nacimientoField;
     private JTextField nombrePaciente;
@@ -26,70 +35,60 @@ public class Pacientes implements PropertyChangeListener  {
     private JButton reporteButton1;
     private JTable pacientes;
 
-    private ModelPacientes model;
-    private ControllerPacientes controller;
+    private Model model;
+    private Controller controller;
 
-    public void setModel(ModelPacientes model) {
+    public JPanel getPanel() { return panel1; }
+
+    public void setModel(Model model) {
         this.model = model;
         model.addPropertyChangeListener(this);
     }
 
-    public void setController(ControllerPacientes controller) {
+    public void setController(Controller controller) {
         this.controller = controller;
     }
-
-    public JPanel getPanel() { return panel1; }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case sistema.presentation.pacientes.ModelPacientes.LIST:
-                int[] cols = {TableModelPaciente.ID,TableModelPaciente.NOMBRE};
+            case sistema.presentation.farmaceutas.Model.LIST:
+                int[] cols = {TableModel.ID, TableModel.NOMBRE};
 
-                pacientes.setModel(new TableModelPaciente(cols, model.getList()));
+                farmaceutas.setModel(new TableModel(cols, model.getList()));
 
                 break;
-            case sistema.presentation.pacientes.ModelPacientes.CURRENT:
-                idPaciente.setText(model.getCurrent().getId());
-                nombrePaciente.setText(model.getCurrent().getNombre());
-                telefonoField.setText(model.getCurrent().getTelefono());
-                nacimientoField.setText(model.getCurrent().getNacimiento());
+            case sistema.presentation.farmaceutas.Model.CURRENT:
+                IdFieldAdmin.setText(model.getCurrent().getId());
+                nombreField.setText(model.getCurrent().getNombre());
 
-                idPaciente.setBackground(null);
-                idPaciente.setToolTipText(null);
+                IdFieldAdmin.setBackground(null);
+                IdFieldAdmin.setToolTipText(null);
 
-                nombrePaciente.setBackground(null);
-                nombrePaciente.setToolTipText(null);
-
-                telefonoField.setBackground(null);
-                telefonoField.setToolTipText(null);
-
-                nacimientoField.setBackground(null);
-                nacimientoField.setToolTipText(null);
-
+                nombreField.setBackground(null);
+                nombreField.setToolTipText(null);
 
                 break;
         }
         this.panel1.revalidate();
     }
 
-
-    public Pacientes() {
-        guardarButton1.addActionListener(new ActionListener() {
+    public View() {
+        guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (validateForm()) {
-                    Paciente paciente = take();
+                    Farmaceuta farmaceuta = take();
                     try {
                         // Si el modelo ya tiene un current con el mismo ID, entonces lo actualiza
                         if (model.getCurrent() != null && !model.getCurrent().getId().isEmpty()
-                                && model.getCurrent().getId().equals(paciente.getId())) {
-                            controller.update(paciente);
-                            JOptionPane.showMessageDialog(panel1, "Paciente actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                                && model.getCurrent().getId().equals(farmaceuta.getId())) {
+                            controller.update(farmaceuta);
+                            JOptionPane.showMessageDialog(panel1, "Farmaceuta actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             // Si no, se crea
-                            controller.create(paciente);
-                            JOptionPane.showMessageDialog(panel1, "Paciente registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            controller.create(farmaceuta);
+                            JOptionPane.showMessageDialog(panel1, "Farmaceuta registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(panel1, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -98,31 +97,31 @@ public class Pacientes implements PropertyChangeListener  {
             }
         });
 
-        limpiarButton1.addActionListener(e -> {
+        limpiarButton.addActionListener(e -> {
             controller.clear();
-            pacienteBusquedaField.setText("");
+            nombreBusquedaField.setText("");
         });
 
-        pacientes.getSelectionModel().addListSelectionListener(e -> {
+        farmaceutas.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                int selectedRow = pacientes.getSelectedRow();
+                int selectedRow = farmaceutas.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Paciente seleccionado = ((TableModelPaciente) pacientes.getModel()).getRowAt(selectedRow);
+                    Farmaceuta seleccionado = ((TableModel) farmaceutas.getModel()).getRowAt(selectedRow);
                     model.setCurrent(seleccionado);
                 }
             }
         });
 
-        borrarButton1.addActionListener(new ActionListener() {
+        borrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (model.getCurrent().getId().isEmpty()) {
-                    JOptionPane.showMessageDialog(panel1, "No hay pacientes seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(panel1, "No hay farmaceuta seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 int confirm = JOptionPane.showConfirmDialog(panel1,
-                        "¿Está seguro de borrar al paciente " + model.getCurrent().getNombre() + "?",
+                        "¿Está seguro de borrar al farmaceuta " + model.getCurrent().getNombre() + "?",
                         "Confirmar borrado",
                         JOptionPane.YES_NO_OPTION);
 
@@ -137,13 +136,13 @@ public class Pacientes implements PropertyChangeListener  {
             }
         });
 
-        buscarButton1.addActionListener(e -> {
-            String textoBusqueda = pacienteBusquedaField.getText().trim();
+        buscarButton.addActionListener(e -> {
+            String textoBusqueda = nombreBusquedaField.getText().trim();
             if (!textoBusqueda.isEmpty()) {
-                controller.findPacienteByName(textoBusqueda);
+                controller.findFarmaceutaByName(textoBusqueda);
 
                 if (model.getList().isEmpty()) {
-                    JOptionPane.showMessageDialog(panel1, "No se encontraron pacientes con ese nombre.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(panel1, "No se encontraron farmaceutas con ese nombre.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(panel1, "Ingrese un texto para buscar.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
@@ -153,17 +152,17 @@ public class Pacientes implements PropertyChangeListener  {
     }
 
     // --- Métodos auxiliares ---
-    public Paciente take() {
-        Paciente p = new Paciente();
-        p.setId(idPaciente.getText());
-        p.setNombre(nombrePaciente.getText());
-        return p;
+    public Farmaceuta take() {
+        Farmaceuta f = new Farmaceuta();
+        f.setId(IdFieldAdmin.getText());
+        f.setNombre(nombreField.getText());
+        return f;
     }
 
     private boolean validateForm() {
         boolean valid = true;
-        valid &= validarCampo(idPaciente, "ID Requerido");
-        valid &= validarCampo(nombrePaciente, "Nombre requerido");
+        valid &= validarCampo(IdFieldAdmin, "ID Requerido");
+        valid &= validarCampo(nombreField, "Nombre requerido");
         return valid;
     }
 
@@ -178,5 +177,6 @@ public class Pacientes implements PropertyChangeListener  {
             return true;
         }
     }
+
 
 }

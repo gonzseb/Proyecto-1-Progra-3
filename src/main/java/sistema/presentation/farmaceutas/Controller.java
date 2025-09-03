@@ -1,17 +1,16 @@
-package sistema.presentation.admin;
+package sistema.presentation.farmaceutas;
 
 import sistema.logic.entities.Farmaceuta;
-import sistema.logic.entities.Medico;
 
 import sistema.logic.Service;
 
 import java.util.List;
 
 public class Controller {
-    private final Admin view;
+    private final View view;
     private final Model model;
 
-    public Controller(Admin view, Model model) {
+    public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
 

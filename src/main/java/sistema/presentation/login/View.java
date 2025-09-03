@@ -2,7 +2,7 @@ package sistema.presentation.login;
 
 import javax.swing.*;
 
-public class ViewLogIn {
+public class View {
     private JPanel panel;
     private JTextField textField1;
     private JPasswordField passwordField1;

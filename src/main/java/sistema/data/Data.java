@@ -60,6 +60,11 @@ public class Data {
         Medicamento m3 = new Medicamento("3003", "Jarabe Tos", "Bebible");
         Medicamento m4 = new Medicamento("4004", "Paracetamol", "Pastilla");
 
+        medicamentos.add(m1);
+        medicamentos.add(m2);
+        medicamentos.add(m3);
+        medicamentos.add(m4);
+
     }
 
     public List<Medico> getMedicos() { return medicos; }

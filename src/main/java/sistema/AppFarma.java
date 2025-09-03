@@ -1,18 +1,18 @@
 package sistema;
 
-import sistema.presentation.admin.Model;
-import sistema.presentation.admin.Admin;
-import sistema.presentation.admin.Controller;
+import sistema.presentation.farmaceutas.Model;
+import sistema.presentation.farmaceutas.View;
+import sistema.presentation.farmaceutas.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AppAdmin {
+public class AppFarma {
     public static void main(String[] args) {
         try {UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");}
         catch (Exception ex) {};
 
-        Admin view = new Admin();
+        View view = new View();
         Model model = new Model();
         Controller controller = new Controller(view, model);
 

@@ -1,4 +1,4 @@
-package sistema.presentation.admin;
+package sistema.presentation.farmaceutas;
 
 import sistema.logic.entities.Farmaceuta;
 import sistema.presentation.AbstractTableModel;
@@ -6,9 +6,9 @@ import sistema.presentation.AbstractTableModel;
 import java.util.List;
 
 
-public class TableModelAdmin extends AbstractTableModel<Farmaceuta> implements javax.swing.table.TableModel {
+public class TableModel extends AbstractTableModel<Farmaceuta> implements javax.swing.table.TableModel {
 
-    public TableModelAdmin(int[] cols, List<Farmaceuta> rows) {
+    public TableModel(int[] cols, List<Farmaceuta> rows) {
         super(cols, rows);
     }
 

@@ -1,28 +1,16 @@
-package sistema.presentation.admin;
+package sistema.presentation.pacientes;
+
+import sistema.Application;
+import sistema.logic.entities.Paciente;
 
 import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import sistema.Application;
-import sistema.logic.entities.Farmaceuta;
-
-
-public class Admin implements PropertyChangeListener {
-    private JTabbedPane tabbedPane1;
+public class View implements PropertyChangeListener  {
     private JPanel panel1;
-    private JTextField IdFieldAdmin;
-    private JTextField nombreField;
-    private JTextField nombreBusquedaField;
-    private JButton buscarButton;
-    private JButton reporteButton;
-    private JButton guardarButton;
-    private JButton limpiarButton;
-    private JButton borrarButton;
-    private JTable farmaceutas;
     private JTextField idPaciente;
     private JTextField nacimientoField;
     private JTextField nombrePaciente;
@@ -38,8 +26,6 @@ public class Admin implements PropertyChangeListener {
     private Model model;
     private Controller controller;
 
-    public JPanel getPanel() { return panel1; }
-
     public void setModel(Model model) {
         this.model = model;
         model.addPropertyChangeListener(this);
@@ -49,46 +35,58 @@ public class Admin implements PropertyChangeListener {
         this.controller = controller;
     }
 
+    public JPanel getPanel() { return panel1; }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case sistema.presentation.admin.Model.LIST:
-                int[] cols = {TableModelAdmin.ID,TableModelAdmin.NOMBRE};
+            case Model.LIST:
+                int[] cols = {TableModel.ID, TableModel.NOMBRE, TableModel.TELEFONO, TableModel.NACIMIENTO};
 
-                farmaceutas.setModel(new TableModelAdmin(cols, model.getList()));
+                pacientes.setModel(new TableModel(cols, model.getList()));
 
                 break;
-            case sistema.presentation.admin.Model.CURRENT:
-                IdFieldAdmin.setText(model.getCurrent().getId());
-                nombreField.setText(model.getCurrent().getNombre());
+            case Model.CURRENT:
+                idPaciente.setText(model.getCurrent().getId());
+                nombrePaciente.setText(model.getCurrent().getNombre());
+                telefonoField.setText(model.getCurrent().getTelefono());
+                nacimientoField.setText(model.getCurrent().getNacimiento());
 
-                IdFieldAdmin.setBackground(null);
-                IdFieldAdmin.setToolTipText(null);
+                idPaciente.setBackground(null);
+                idPaciente.setToolTipText(null);
 
-                nombreField.setBackground(null);
-                nombreField.setToolTipText(null);
+                nombrePaciente.setBackground(null);
+                nombrePaciente.setToolTipText(null);
+
+                telefonoField.setBackground(null);
+                telefonoField.setToolTipText(null);
+
+                nacimientoField.setBackground(null);
+                nacimientoField.setToolTipText(null);
+
 
                 break;
         }
         this.panel1.revalidate();
     }
 
-    public Admin() {
-        guardarButton.addActionListener(new ActionListener() {
+
+    public View() {
+        guardarButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (validateForm()) {
-                    Farmaceuta farmaceuta = take();
+                    Paciente paciente = take();
                     try {
                         // Si el modelo ya tiene un current con el mismo ID, entonces lo actualiza
                         if (model.getCurrent() != null && !model.getCurrent().getId().isEmpty()
-                                && model.getCurrent().getId().equals(farmaceuta.getId())) {
-                            controller.update(farmaceuta);
-                            JOptionPane.showMessageDialog(panel1, "Farmaceuta actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                                && model.getCurrent().getId().equals(paciente.getId())) {
+                            controller.update(paciente);
+                            JOptionPane.showMessageDialog(panel1, "Paciente actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             // Si no, se crea
-                            controller.create(farmaceuta);
-                            JOptionPane.showMessageDialog(panel1, "Farmaceuta registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            controller.create(paciente);
+                            JOptionPane.showMessageDialog(panel1, "Paciente registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(panel1, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -97,31 +95,31 @@ public class Admin implements PropertyChangeListener {
             }
         });
 
-        limpiarButton.addActionListener(e -> {
+        limpiarButton1.addActionListener(e -> {
             controller.clear();
-            nombreBusquedaField.setText("");
+            pacienteBusquedaField.setText("");
         });
 
-        farmaceutas.getSelectionModel().addListSelectionListener(e -> {
+        pacientes.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                int selectedRow = farmaceutas.getSelectedRow();
+                int selectedRow = pacientes.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Farmaceuta seleccionado = ((TableModelAdmin) farmaceutas.getModel()).getRowAt(selectedRow);
+                    Paciente seleccionado = ((TableModel) pacientes.getModel()).getRowAt(selectedRow);
                     model.setCurrent(seleccionado);
                 }
             }
         });
 
-        borrarButton.addActionListener(new ActionListener() {
+        borrarButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (model.getCurrent().getId().isEmpty()) {
-                    JOptionPane.showMessageDialog(panel1, "No hay farmaceuta seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(panel1, "No hay pacientes seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 int confirm = JOptionPane.showConfirmDialog(panel1,
-                        "¿Está seguro de borrar al farmaceuta " + model.getCurrent().getNombre() + "?",
+                        "¿Está seguro de borrar al paciente " + model.getCurrent().getNombre() + "?",
                         "Confirmar borrado",
                         JOptionPane.YES_NO_OPTION);
 
@@ -136,13 +134,13 @@ public class Admin implements PropertyChangeListener {
             }
         });
 
-        buscarButton.addActionListener(e -> {
-            String textoBusqueda = nombreBusquedaField.getText().trim();
+        buscarButton1.addActionListener(e -> {
+            String textoBusqueda = pacienteBusquedaField.getText().trim();
             if (!textoBusqueda.isEmpty()) {
-                controller.findFarmaceutaByName(textoBusqueda);
+                controller.findPacienteByName(textoBusqueda);
 
                 if (model.getList().isEmpty()) {
-                    JOptionPane.showMessageDialog(panel1, "No se encontraron farmaceutas con ese nombre.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(panel1, "No se encontraron pacientes con ese nombre.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(panel1, "Ingrese un texto para buscar.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
@@ -152,17 +150,17 @@ public class Admin implements PropertyChangeListener {
     }
 
     // --- Métodos auxiliares ---
-    public Farmaceuta take() {
-        Farmaceuta f = new Farmaceuta();
-        f.setId(IdFieldAdmin.getText());
-        f.setNombre(nombreField.getText());
-        return f;
+    public Paciente take() {
+        Paciente p = new Paciente();
+        p.setId(idPaciente.getText());
+        p.setNombre(nombrePaciente.getText());
+        return p;
     }
 
     private boolean validateForm() {
         boolean valid = true;
-        valid &= validarCampo(IdFieldAdmin, "ID Requerido");
-        valid &= validarCampo(nombreField, "Nombre requerido");
+        valid &= validarCampo(idPaciente, "ID Requerido");
+        valid &= validarCampo(nombrePaciente, "Nombre requerido");
         return valid;
     }
 
@@ -177,6 +175,5 @@ public class Admin implements PropertyChangeListener {
             return true;
         }
     }
-
 
 }

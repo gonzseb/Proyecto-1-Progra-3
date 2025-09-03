@@ -1,6 +1,6 @@
-package sistema.presentation.pacientes;
+package sistema.presentation.farmaceutas;
 
-import sistema.logic.entities.Paciente;
+import sistema.logic.entities.Farmaceuta;
 
 import sistema.presentation.AbstractModel;
 
@@ -9,15 +9,15 @@ import java.util.List;
 
 import java.beans.PropertyChangeListener;
 
-public class ModelPacientes extends AbstractModel {
-    private Paciente current;
-    private List<Paciente> list;
+public class Model extends AbstractModel {
+    private Farmaceuta current;
+    private List<Farmaceuta> list;
 
     public static final String CURRENT = "current";
     public static final String LIST = "list";
 
-    public ModelPacientes() {
-        current = new Paciente();
+    public Model() {
+        current = new Farmaceuta();
         list = new ArrayList<>();
     }
 
@@ -28,20 +28,20 @@ public class ModelPacientes extends AbstractModel {
         firePropertyChange(LIST);
     }
 
-    public Paciente getCurrent() {
+    public Farmaceuta getCurrent() {
         return current;
     }
 
-    public void setCurrent(Paciente current) {
+    public void setCurrent(Farmaceuta current) {
         this.current = current;
         firePropertyChange(CURRENT);
     }
 
-    public List<Paciente> getList() {
+    public List<Farmaceuta> getList() {
         return list;
     }
 
-    public void setList(List<Paciente> list) {
+    public void setList(List<Farmaceuta> list) {
         this.list = list;
         firePropertyChange(LIST);
     }
