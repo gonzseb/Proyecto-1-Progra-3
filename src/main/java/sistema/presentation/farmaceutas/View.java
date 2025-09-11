@@ -7,12 +7,11 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import sistema.Application;
+import sistema.ApplicationLogIn;
 import sistema.logic.entities.Farmaceuta;
 
 
 public class View implements PropertyChangeListener {
-    private JTabbedPane tabbedPane1;
     private JPanel panel1;
     private JTextField IdFieldAdmin;
     private JTextField nombreField;
@@ -23,17 +22,6 @@ public class View implements PropertyChangeListener {
     private JButton limpiarButton;
     private JButton borrarButton;
     private JTable farmaceutas;
-    private JTextField idPaciente;
-    private JTextField nacimientoField;
-    private JTextField nombrePaciente;
-    private JTextField telefonoField;
-    private JButton guardarButton1;
-    private JButton limpiarButton1;
-    private JButton borrarButton1;
-    private JTextField pacienteBusquedaField;
-    private JButton buscarButton1;
-    private JButton reporteButton1;
-    private JTable pacientes;
 
     private Model model;
     private Controller controller;
@@ -168,7 +156,7 @@ public class View implements PropertyChangeListener {
 
     private boolean validarCampo(JTextField field, String mensajeError) {
         if (field.getText().isEmpty()) {
-            field.setBackground(Application.BACKGROUND_ERROR);
+            field.setBackground(ApplicationLogIn.BACKGROUND_ERROR);
             field.setToolTipText(mensajeError);
             return false;
         } else {

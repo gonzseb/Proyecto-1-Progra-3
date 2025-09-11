@@ -1,5 +1,7 @@
 package sistema.logic.entities;
 
+import sistema.logic.entities.enums.EstadoReceta;
+
 import java.time.LocalDate;
 
 import java.util.ArrayList;

@@ -1,12 +1,9 @@
 package sistema.logic;
 
-import sistema.AppPacientes;
 import sistema.data.Data;
 
-import sistema.logic.entities.Farmaceuta;
-import sistema.logic.entities.Medicamento;
-import sistema.logic.entities.Medico;
-import sistema.logic.entities.Paciente;
+import sistema.logic.entities.*;
+import sistema.logic.entities.enums.EstadoReceta;
 
 import java.util.Comparator;
 import java.util.List;
@@ -35,8 +32,6 @@ public class Service {
         }
         data.getMedicos().add(medico);
     }
-
-    // Read is missing...
 
     public void updateMedico(Medico medico) throws Exception {
         Medico existente = data.getMedicos().stream()
@@ -227,7 +222,66 @@ public class Service {
                 .collect(Collectors.toList());
     }
 
+    public Usuario read(Usuario u) throws Exception {
+        // Buscar en médicos
+        for (Usuario user : data.getMedicos()) {
+            if (user.getId().equals(u.getId())) {
+                return user; // user ya tiene rol MEDICO
+            }
+        }
 
-//
+        // Buscar en farmaceutas
+        for (Usuario user : data.getFarmaceutas()) {
+            if (user.getId().equals(u.getId())) {
+                return user; // user ya tiene rol FARMACEUTA
+            }
+        }
+
+        // Buscar en admins
+        for (Usuario user : data.getAdmins()) {
+            if (user.getId().equals(u.getId())) {
+                return user; // user ya tiene rol ADMIN
+            }
+        }
+
+        throw new Exception("Usuario no encontrado: " + u.getId());
+    }
+
+    // Recetas:
+
+    public void createReceta(Receta receta) throws Exception {
+        boolean exists = data.getRecetas().stream()
+                .anyMatch(r -> r.getId().equals(receta.getId()));
+        if (exists) {
+            throw new Exception("Receta ya existe");
+        }
+        data.getRecetas().add(receta);
+    }
+
+    public List<Receta> findAllRecetas() {
+        return data.getRecetas();
+    }
+
+    //Despacho
+
+    public void updateRecetaEstado(String recetaId, EstadoReceta nuevoEstado) throws Exception {
+        Receta receta = data.getRecetas().stream()
+                .filter(r -> r.getId().equals(recetaId))
+                .findFirst()
+                .orElse(null);
+
+        if (receta == null) {
+            throw new Exception("Receta no encontrada");
+        }
+
+        receta.setEstado(nuevoEstado);
+    }
+
+    public List<Receta> findRecetasByPacienteId(String pacienteId) {
+        return data.getRecetas().stream()
+                .filter(r -> r.getIdPaciente().equals(pacienteId))
+                .collect(java.util.stream.Collectors.toList());
+    }
+
 
 }

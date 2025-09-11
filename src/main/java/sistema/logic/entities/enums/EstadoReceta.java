@@ -1,4 +1,4 @@
-package sistema.logic.entities;
+package sistema.logic.entities.enums;
 
 public enum EstadoReceta {
     CONFECCIONADA,

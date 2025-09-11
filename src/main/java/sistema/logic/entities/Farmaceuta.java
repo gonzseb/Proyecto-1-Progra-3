@@ -1,33 +1,24 @@
 package sistema.logic.entities;
 
-public class Farmaceuta extends Persona {
-    private String clave;
+import sistema.logic.entities.enums.UsuarioRol;
 
+public class Farmaceuta extends Usuario {
+
+    // Constructor principal
+    public Farmaceuta(String id, String nombre, String clave) {
+        super(id, nombre, clave, UsuarioRol.FARMACEUTA);
+    }
+
+    // Constructor de conveniencia (clave = id)
     public Farmaceuta(String id, String nombre) {
-        super(id, nombre);
-        this.clave = id; // Al crear, la clave inicial es igual al id
+        super(id, nombre, id, UsuarioRol.FARMACEUTA);
     }
 
     public Farmaceuta() {
-        super("", "");
-        this.clave = "";
-    }
-
-    // Getters y Setters
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    // Método para cambiar la clave
-    public void cambiarClave(String nuevaClave) {
-        this.clave = nuevaClave;
+        super();
     }
 
     public String mostrarInfo() {
-        return "Farmaceuta: " + getNombre() + " ID: " + getId();
+        return "Farmaceuta: " + getNombre() + " | ID: " + getId();
     }
 }

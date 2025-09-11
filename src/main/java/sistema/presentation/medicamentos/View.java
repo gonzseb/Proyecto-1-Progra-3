@@ -1,15 +1,9 @@
 package sistema.presentation.medicamentos;
 
-import sistema.Application;
+import sistema.ApplicationLogIn;
 import sistema.logic.entities.Medicamento;
-import sistema.presentation.medicamentos.Controller;
-import sistema.presentation.medicamentos.Model;
-import sistema.presentation.medicamentos.TableModel;
 
 import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -24,7 +18,7 @@ public class View implements PropertyChangeListener {
     private JButton limpiarButton;
     private JTextField nombreBusquedaField;
     private JButton buscarButton;
-    private JButton limpiarButton1;
+    private JButton reporteButton;
     private JTable medicamentos;
 
     // -- MVC --
@@ -133,7 +127,7 @@ public class View implements PropertyChangeListener {
 
     private boolean validarCampo(JTextField field, String mensajeError) {
         if (field.getText().isEmpty()) {
-            field.setBackground(Application.BACKGROUND_ERROR);
+            field.setBackground(ApplicationLogIn.BACKGROUND_ERROR);
             field.setToolTipText(mensajeError);
             return false;
         } else {

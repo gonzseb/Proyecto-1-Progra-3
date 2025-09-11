@@ -1,7 +1,6 @@
 package sistema.presentation.medicos;
 
-import sistema.Application;
-
+import sistema.ApplicationLogIn;
 import sistema.logic.entities.Medico;
 
 import javax.swing.*;
@@ -135,7 +134,7 @@ public class View implements PropertyChangeListener {
 
     private boolean validarCampo(JTextField field, String mensajeError) {
         if (field.getText().isEmpty()) {
-            field.setBackground(Application.BACKGROUND_ERROR);
+            field.setBackground(ApplicationLogIn.BACKGROUND_ERROR);
             field.setToolTipText(mensajeError);
             return false;
         } else {
