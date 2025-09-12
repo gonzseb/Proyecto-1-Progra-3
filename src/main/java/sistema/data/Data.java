@@ -1,5 +1,6 @@
 package sistema.data;
 
+import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +8,32 @@ import java.util.List;
 import sistema.logic.entities.*;
 import sistema.logic.entities.enums.EstadoReceta;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
+    @XmlElementWrapper(name = "medicos")
+    @XmlElement(name = "medico")
     private List<Medico> medicos;
+
+    @XmlElementWrapper(name = "farmaceutas")
+    @XmlElement(name = "farmaceuta")
     private List<Farmaceuta> farmaceutas;
+
+    @XmlElementWrapper(name = "pacientes")
+    @XmlElement(name = "paciente")
     private List<Paciente> pacientes;
+
+    @XmlElementWrapper(name = "medicamentos")
+    @XmlElement(name = "medicamento")
     private List<Medicamento> medicamentos;
+
+    @XmlElementWrapper(name = "admins")
+    @XmlElement(name = "admin")
     private List<Admin> admins;
-    private List<Usuario> usuarios;
-    private List<Receta> recetas = new ArrayList<>();
+
+    @XmlElementWrapper(name = "recetas")
+    @XmlElement(name = "receta")
+    private List<Receta> recetas;
 
     public Data() {
         medicos = new ArrayList<>();
@@ -77,8 +96,6 @@ public class Data {
         admins.add(a3);
 
         recetas = new ArrayList<>();
-
-// Realistic Sample Recetas with proper quantity/duration ratios
 
 // Receta 1: Dr. González prescribes to Karen Alvares
         Receta r1 = new Receta("REC001", "MED001", "P001", LocalDate.of(2024, 11, 15));

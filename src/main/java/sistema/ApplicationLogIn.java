@@ -1,5 +1,6 @@
 package sistema;
 
+import sistema.logic.Service;
 import sistema.presentation.login.View;
 import sistema.presentation.login.Model;
 import sistema.presentation.login.Controller;
@@ -14,6 +15,14 @@ public class ApplicationLogIn {
     public static final Color BACKGROUND_ERROR = new Color(255, 102, 102);
 
     public static void main(String[] args) {
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Saving data before exit...");
+            Service.instance().stop();
+            System.out.println("Data saved successfully!");
+        }));
+
+
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception ex) {

@@ -2,6 +2,9 @@ package sistema.logic.entities;
 
 import sistema.logic.entities.enums.UsuarioRol;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Usuario extends Persona {
 
     private String clave;     // contraseña en texto plano

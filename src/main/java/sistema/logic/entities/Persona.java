@@ -1,6 +1,10 @@
 package sistema.logic.entities;
+import javax.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 abstract class Persona {
+
+    @XmlID
     protected String id;
     protected String nombre;
 

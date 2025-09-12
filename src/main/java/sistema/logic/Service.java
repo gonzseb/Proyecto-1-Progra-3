@@ -2,6 +2,7 @@ package sistema.logic;
 
 import sistema.data.Data;
 
+import sistema.data.XmlPersister;
 import sistema.logic.entities.*;
 import sistema.logic.entities.enums.EstadoReceta;
 
@@ -20,7 +21,11 @@ public class Service {
     private Data data;
 
     private Service() {
-        data = new Data();
+        try {
+            data = XmlPersister.instance().load();
+        } catch (Exception e) {
+            data = new Data();
+        }
     }
 
     // -- Médicos --
@@ -283,5 +288,13 @@ public class Service {
                 .collect(java.util.stream.Collectors.toList());
     }
 
+    //Para la persistencia al cerrar
 
+    public void stop() {
+        try {
+            XmlPersister.instance().store(data);
+        } catch (Exception e) {
+            System.out.println("Error saving data: " + e);
+        }
+    }
 }

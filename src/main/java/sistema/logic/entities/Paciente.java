@@ -1,5 +1,8 @@
 package sistema.logic.entities;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Paciente extends Persona {
     private int edad;
     private String telefono;

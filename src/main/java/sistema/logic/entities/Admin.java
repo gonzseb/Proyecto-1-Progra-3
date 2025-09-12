@@ -2,6 +2,9 @@ package sistema.logic.entities;
 
 import sistema.logic.entities.enums.UsuarioRol;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Admin extends Usuario {
 
     public Admin(String id, String clave) {
