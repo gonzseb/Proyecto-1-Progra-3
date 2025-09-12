@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+    <medicos>
+        <medico>
+            <id>MED001</id>
+            <nombre>Sebastián González</nombre>
+            <clave>MED001</clave>
+            <rol>MEDICO</rol>
+            <especialidad>Odontología</especialidad>
+        </medico>
+        <medico>
+            <id>MED002</id>
+            <nombre>David Masis</nombre>
+            <clave>MED002</clave>
+            <rol>MEDICO</rol>
+            <especialidad>Otorrinolaringología</especialidad>
+        </medico>
+        <medico>
+            <id>MED003</id>
+            <nombre>Juan Sánchez</nombre>
+            <clave>MED003</clave>
+            <rol>MEDICO</rol>
+            <especialidad>Oftalmología</especialidad>
+        </medico>
+        <medico>
+            <id>MED004</id>
+            <nombre>Pablo Bermúdez</nombre>
+            <clave>MED004</clave>
+            <rol>MEDICO</rol>
+            <especialidad>Geriatría</especialidad>
+        </medico>
+        <medico>
+            <id>MED005</id>
+            <nombre>Felipe Trigueros</nombre>
+            <clave></clave>
+            <especialidad>Cardiologia</especialidad>
+        </medico>
+    </medicos>
+    <farmaceutas>
+        <farmaceuta>
+            <id>F001</id>
+            <nombre>Pepe Figueres</nombre>
+            <clave>F001</clave>
+            <rol>FARMACEUTA</rol>
+        </farmaceuta>
+        <farmaceuta>
+            <id>F002</id>
+            <nombre>Laura Chinchilla</nombre>
+            <clave>F002</clave>
+            <rol>FARMACEUTA</rol>
+        </farmaceuta>
+        <farmaceuta>
+            <id>F003</id>
+            <nombre>Carlos Alvarado</nombre>
+            <clave>F003</clave>
+            <rol>FARMACEUTA</rol>
+        </farmaceuta>
+        <farmaceuta>
+            <id>F004</id>
+            <nombre>Rodrigo Chavez</nombre>
+            <clave>F004</clave>
+            <rol>FARMACEUTA</rol>
+        </farmaceuta>
+        <farmaceuta>
+            <id>F005</id>
+            <nombre>Juan Mora</nombre>
+            <clave></clave>
+        </farmaceuta>
+    </farmaceutas>
+    <pacientes>
+        <paciente>
+            <id>P001</id>
+            <nombre>Karen Alvares</nombre>
+            <edad>40</edad>
+            <telefono>86875128</telefono>
+            <nacimiento>21-01-1978</nacimiento>
+        </paciente>
+        <paciente>
+            <id>P002</id>
+            <nombre>Eduardo Mora</nombre>
+            <edad>32</edad>
+            <telefono>85462317</telefono>
+            <nacimiento>15-03-1991</nacimiento>
+        </paciente>
+        <paciente>
+            <id>P003</id>
+            <nombre>Alejandra Lazo</nombre>
+            <edad>27</edad>
+            <telefono>89741236</telefono>
+            <nacimiento>09-07-1996</nacimiento>
+        </paciente>
+        <paciente>
+            <id>P004</id>
+            <nombre>Daniel Oviedo</nombre>
+            <edad>35</edad>
+            <telefono>81234567</telefono>
+            <nacimiento>30-11-1988</nacimiento>
+        </paciente>
+    </pacientes>
+    <medicamentos>
+        <medicamento>
+            <codigo>1001</codigo>
+            <nombre>Antibiotico</nombre>
+            <presentacion>Pastilla</presentacion>
+        </medicamento>
+        <medicamento>
+            <codigo>2002</codigo>
+            <nombre>Antihistaminicos</nombre>
+            <presentacion>Pastilla</presentacion>
+        </medicamento>
+        <medicamento>
+            <codigo>3003</codigo>
+            <nombre>Jarabe Tos</nombre>
+            <presentacion>Bebible</presentacion>
+        </medicamento>
+        <medicamento>
+            <codigo>4004</codigo>
+            <nombre>Paracetamol</nombre>
+            <presentacion>Pastilla</presentacion>
+        </medicamento>
+    </medicamentos>
+    <admins>
+        <admin>
+            <id>ADM001</id>
+            <nombre>ADM001</nombre>
+            <clave>ADM001</clave>
+            <rol>ADMIN</rol>
+        </admin>
+        <admin>
+            <id>ADM002</id>
+            <nombre>ADM002</nombre>
+            <clave>ADM002</clave>
+            <rol>ADMIN</rol>
+        </admin>
+        <admin>
+            <id>ADM002</id>
+            <nombre>ADM002</nombre>
+            <clave>ADM002</clave>
+            <rol>ADMIN</rol>
+        </admin>
+    </admins>
+    <recetas>
+        <receta>
+            <id>REC001</id>
+            <idMedico>MED001</idMedico>
+            <idPaciente>P001</idPaciente>
+            <fechaConfeccion>2024-11-15</fechaConfeccion>
+            <fechaRetiro>2024-11-20</fechaRetiro>
+            <estado>ENTREGADA</estado>
+            <detalles>
+                <detalle>
+                    <codigoMedicamento>1001</codigoMedicamento>
+                    <cantidad>21</cantidad>
+                    <indicaciones>Tomar 1 cada 8 horas después de las comidas</indicaciones>
+                    <duracionDias>7</duracionDias>
+                </detalle>
+                <detalle>
+                    <codigoMedicamento>4004</codigoMedicamento>
+                    <cantidad>15</cantidad>
+                    <indicaciones>Para el dolor, máximo 1 cada 8 horas</indicaciones>
+                    <duracionDias>5</duracionDias>
+                </detalle>
+            </detalles>
+        </receta>
+        <receta>
+            <id>REC002</id>
+            <idMedico>MED002</idMedico>
+            <idPaciente>P002</idPaciente>
+            <fechaConfeccion>2024-12-01</fechaConfeccion>
+            <estado>LISTA</estado>
+            <detalles>
+                <detalle>
+                    <codigoMedicamento>2002</codigoMedicamento>
+                    <cantidad>20</cantidad>
+                    <indicaciones>Una pastilla cada 12 horas para la alergia</indicaciones>
+                    <duracionDias>10</duracionDias>
+                </detalle>
+                <detalle>
+                    <codigoMedicamento>3003</codigoMedicamento>
+                    <cantidad>1</cantidad>
+                    <indicaciones>15ml cada 6 horas para la tos</indicaciones>
+                    <duracionDias>7</duracionDias>
+                </detalle>
+            </detalles>
+        </receta>
+        <receta>
+            <id>REC003</id>
+            <idMedico>MED003</idMedico>
+            <idPaciente>P003</idPaciente>
+            <fechaConfeccion>2024-12-05</fechaConfeccion>
+            <estado>PROCESO</estado>
+            <detalles>
+                <detalle>
+                    <codigoMedicamento>4004</codigoMedicamento>
+                    <cantidad>9</cantidad>
+                    <indicaciones>Solo si hay dolor intenso, máximo 3 al día</indicaciones>
+                    <duracionDias>3</duracionDias>
+                </detalle>
+            </detalles>
+        </receta>
+        <receta>
+            <id>REC004</id>
+            <idMedico>MED004</idMedico>
+            <idPaciente>P004</idPaciente>
+            <fechaConfeccion>2024-12-08</fechaConfeccion>
+            <estado>CONFECCIONADA</estado>
+            <detalles>
+                <detalle>
+                    <codigoMedicamento>1001</codigoMedicamento>
+                    <cantidad>28</cantidad>
+                    <indicaciones>Tomar 1 cada 12 horas con abundante agua</indicaciones>
+                    <duracionDias>14</duracionDias>
+                </detalle>
+                <detalle>
+                    <codigoMedicamento>2002</codigoMedicamento>
+                    <cantidad>14</cantidad>
+                    <indicaciones>Una en la mañana, una en la noche</indicaciones>
+                    <duracionDias>7</duracionDias>
+                </detalle>
+                <detalle>
+                    <codigoMedicamento>4004</codigoMedicamento>
+                    <cantidad>10</cantidad>
+                    <indicaciones>Solo para fiebre mayor a 38°C, máximo 2 al día</indicaciones>
+                    <duracionDias>5</duracionDias>
+                </detalle>
+            </detalles>
+        </receta>
+        <receta>
+            <id>REC005</id>
+            <idMedico>MED001</idMedico>
+            <idPaciente>P002</idPaciente>
+            <fechaConfeccion>2024-12-10</fechaConfeccion>
+            <fechaRetiro>2024-12-12</fechaRetiro>
+            <estado>ENTREGADA</estado>
+            <detalles>
+                <detalle>
+                    <codigoMedicamento>3003</codigoMedicamento>
+                    <cantidad>1</cantidad>
+                    <indicaciones>10ml cada 8 horas para la tos seca nocturna</indicaciones>
+                    <duracionDias>5</duracionDias>
+                </detalle>
+            </detalles>
+        </receta>
+    </recetas>
+</data>
