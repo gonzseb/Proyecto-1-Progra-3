@@ -1,6 +1,7 @@
 package sistema.presentation.login;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -43,10 +44,17 @@ public class View extends JDialog {
             passwordField.setText("");
         });
 
-        // Listener para botón "Cambiar Contraseña"
         cambiarContraseñaButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Función no implementada");
+            Window parentWindow = SwingUtilities.getWindowAncestor(this);
+            sistema.presentation.popUpCambioClave.View changePasswordDialog =
+                    new sistema.presentation.popUpCambioClave.View(parentWindow);
+            changePasswordDialog.setVisible(true);
+
+            if (changePasswordDialog.wasPasswordChanged()) {
+                // handle it
+            }
         });
+
     }
 
     public void setController(Controller controller) {
@@ -86,4 +94,6 @@ public class View extends JDialog {
     public void addCancelarListener(ActionListener listener) {
         // Controller will handle this, so we can remove if not needed
     }
+
+
 }

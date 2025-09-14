@@ -18,7 +18,6 @@ public class View implements PropertyChangeListener {
     private JButton limpiarButton;
     private JTextField nombreBusquedaField;
     private JButton buscarButton;
-    private JButton reporteButton;
     private JTable medicamentos;
 
     // -- MVC --

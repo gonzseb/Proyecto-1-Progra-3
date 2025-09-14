@@ -1,16 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sistema.presentation.dashboard.View">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="1" vgap="1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="687" height="400"/>
+      <xy x="20" y="20" width="1220" height="400"/>
     </constraints>
     <properties>
-      <preferredSize width="800" height="300"/>
+      <opaque value="false"/>
+      <preferredSize width="200" height="200"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="8db2a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="34659" binding="datosPanel" layout-manager="GridLayoutManager" row-count="5" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="bevel-raised" title="Datos" title-justification="4" title-position="2">
+          <font style="1"/>
+          <title-color color="-16777216"/>
+        </border>
+        <children>
+          <component id="8c262" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Desde"/>
+            </properties>
+          </component>
+          <hspacer id="3b620">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="7ac67" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hasta"/>
+            </properties>
+          </component>
+          <component id="79a2c" class="javax.swing.JComboBox" binding="comboBoxDesdeAño">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="2025"/>
+                <item value="2024"/>
+              </model>
+            </properties>
+          </component>
+          <component id="f9ada" class="javax.swing.JComboBox" binding="comboBoxDesdeMes">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model/>
+            </properties>
+          </component>
+          <component id="b6b83" class="javax.swing.JComboBox" binding="comboBoxHastaAño">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="2025"/>
+                <item value="2024"/>
+              </model>
+            </properties>
+          </component>
+          <component id="3132d" class="javax.swing.JComboBox" binding="comboBoxHastaMes">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model/>
+            </properties>
+          </component>
+          <component id="7f64f" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Medicamento"/>
+            </properties>
+          </component>
+          <component id="47ce2" class="javax.swing.JComboBox" binding="comboBoxMedicamento">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="b1cb" class="javax.swing.JButton" binding="OKButton" default-binding="true">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-6357091"/>
+              <text value="OK"/>
+            </properties>
+          </component>
+          <scrollpane id="11acd">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="6a0e0" class="javax.swing.JTable" binding="tablaMedicamentos">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <hspacer id="f7d2c">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <grid id="9c117" binding="medicamentosPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="bevel-raised" title="Medicamento" title-justification="4" title-position="2">
+          <font style="1"/>
+          <title-color color="-16777216"/>
+        </border>
+        <children>
+          <grid id="b459c" binding="medicamentosLineGraph" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <grid id="dc008" binding="recetasPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -21,883 +153,14 @@
           <title-color color="-16777216"/>
         </border>
         <children>
-          <grid id="31990" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="c41c" binding="recetasPieGraph" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none" title="graficoRecetas"/>
-            <children/>
-          </grid>
-        </children>
-      </grid>
-      <grid id="fcb19" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="bevel-raised" title="Medicamentos" title-justification="4" title-position="2">
-          <font style="1"/>
-          <title-color color="-16777216"/>
-        </border>
-        <children>
-          <grid id="52616" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none" title="graficomedicamentos"/>
-            <children/>
-          </grid>
-        </children>
-      </grid>
-      <grid id="d105a" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="bevel-raised" title="Datos" title-justification="4" title-position="2">
-          <font style="1"/>
-          <title-color color="-16777216"/>
-        </border>
-        <children>
-          <component id="f6780" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Desde"/>
-            </properties>
-          </component>
-          <component id="f1c42" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <model>
-                <item value="2025"/>
-              </model>
-            </properties>
-          </component>
-          <component id="1773d" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <model>
-                <item value="1-Enero"/>
-                <item value="2-Enero"/>
-                <item value="3-Enero"/>
-                <item value="4-Enero"/>
-                <item value="5-Enero"/>
-                <item value="6-Enero"/>
-                <item value="7-Enero"/>
-                <item value="8-Enero"/>
-                <item value="9-Enero"/>
-                <item value="10-Enero"/>
-                <item value="11-Enero"/>
-                <item value="12-Enero"/>
-                <item value="13-Enero"/>
-                <item value="14-Enero"/>
-                <item value="15-Enero"/>
-                <item value="16-Enero"/>
-                <item value="17-Enero"/>
-                <item value="18-Enero"/>
-                <item value="19-Enero"/>
-                <item value="20-Enero"/>
-                <item value="21-Enero"/>
-                <item value="22-Enero"/>
-                <item value="23-Enero"/>
-                <item value="24-Enero"/>
-                <item value="25-Enero"/>
-                <item value="26-Enero"/>
-                <item value="27-Enero"/>
-                <item value="28-Enero"/>
-                <item value="29-Enero"/>
-                <item value="30-Enero"/>
-                <item value="31-Enero"/>
-                <item value="1-Febrero"/>
-                <item value="2-Febrero"/>
-                <item value="3-Febrero"/>
-                <item value="4-Febrero"/>
-                <item value="5-Febrero"/>
-                <item value="6-Febrero"/>
-                <item value="7-Febrero"/>
-                <item value="8-Febrero"/>
-                <item value="9-Febrero"/>
-                <item value="10-Febrero"/>
-                <item value="11-Febrero"/>
-                <item value="12-Febrero"/>
-                <item value="13-Febrero"/>
-                <item value="14-Febrero"/>
-                <item value="15-Febrero"/>
-                <item value="16-Febrero"/>
-                <item value="17-Febrero"/>
-                <item value="18-Febrero"/>
-                <item value="19-Febrero"/>
-                <item value="20-Febrero"/>
-                <item value="21-Febrero"/>
-                <item value="22-Febrero"/>
-                <item value="23-Febrero"/>
-                <item value="24-Febrero"/>
-                <item value="25-Febrero"/>
-                <item value="26-Febrero"/>
-                <item value="27-Febrero"/>
-                <item value="28-Febrero"/>
-                <item value="1-Marzo"/>
-                <item value="2-Marzo"/>
-                <item value="3-Marzo"/>
-                <item value="4-Marzo"/>
-                <item value="5-Marzo"/>
-                <item value="6-Marzo"/>
-                <item value="7-Marzo"/>
-                <item value="8-Marzo"/>
-                <item value="9-Marzo"/>
-                <item value="10-Marzo"/>
-                <item value="11-Marzo"/>
-                <item value="12-Marzo"/>
-                <item value="13-Marzo"/>
-                <item value="14-Marzo"/>
-                <item value="15-Marzo"/>
-                <item value="16-Marzo"/>
-                <item value="17-Marzo"/>
-                <item value="18-Marzo"/>
-                <item value="19-Marzo"/>
-                <item value="20-Marzo"/>
-                <item value="21-Marzo"/>
-                <item value="22-Marzo"/>
-                <item value="23-Marzo"/>
-                <item value="24-Marzo"/>
-                <item value="25-Marzo"/>
-                <item value="26-Marzo"/>
-                <item value="27-Marzo"/>
-                <item value="28-Marzo"/>
-                <item value="29-Marzo"/>
-                <item value="30-Marzo"/>
-                <item value="31-Marzo"/>
-                <item value="1-Abril"/>
-                <item value="2-Abril"/>
-                <item value="3-Abril"/>
-                <item value="4-Abril"/>
-                <item value="5-Abril"/>
-                <item value="6-Abril"/>
-                <item value="7-Abril"/>
-                <item value="8-Abril"/>
-                <item value="9-Abril"/>
-                <item value="10-Abril"/>
-                <item value="11-Abril"/>
-                <item value="12-Abril"/>
-                <item value="13-Abril"/>
-                <item value="14-Abril"/>
-                <item value="15-Abril"/>
-                <item value="16-Abril"/>
-                <item value="17-Abril"/>
-                <item value="18-Abril"/>
-                <item value="19-Abril"/>
-                <item value="20-Abril"/>
-                <item value="21-Abril"/>
-                <item value="22-Abril"/>
-                <item value="23-Abril"/>
-                <item value="24-Abril"/>
-                <item value="25-Abril"/>
-                <item value="26-Abril"/>
-                <item value="27-Abril"/>
-                <item value="28-Abril"/>
-                <item value="29-Abril"/>
-                <item value="30-Abril"/>
-                <item value="1-Mayo"/>
-                <item value="2-Mayo"/>
-                <item value="3-Mayo"/>
-                <item value="4-Mayo"/>
-                <item value="5-Mayo"/>
-                <item value="6-Mayo"/>
-                <item value="7-Mayo"/>
-                <item value="8-Mayo"/>
-                <item value="9-Mayo"/>
-                <item value="10-Mayo"/>
-                <item value="11-Mayo"/>
-                <item value="12-Mayo"/>
-                <item value="13-Mayo"/>
-                <item value="14-Mayo"/>
-                <item value="15-Mayo"/>
-                <item value="16-Mayo"/>
-                <item value="17-Mayo"/>
-                <item value="18-Mayo"/>
-                <item value="19-Mayo"/>
-                <item value="20-Mayo"/>
-                <item value="21-Mayo"/>
-                <item value="22-Mayo"/>
-                <item value="23-Mayo"/>
-                <item value="24-Mayo"/>
-                <item value="25-Mayo"/>
-                <item value="26-Mayo"/>
-                <item value="27-Mayo"/>
-                <item value="28-Mayo"/>
-                <item value="29-Mayo"/>
-                <item value="30-Mayo"/>
-                <item value="31-Mayo"/>
-                <item value="1-Junio"/>
-                <item value="2-Junio"/>
-                <item value="3-Junio"/>
-                <item value="4-Junio"/>
-                <item value="5-Junio"/>
-                <item value="6-Junio"/>
-                <item value="7-Junio"/>
-                <item value="8-Junio"/>
-                <item value="9-Junio"/>
-                <item value="10-Junio"/>
-                <item value="11-Junio"/>
-                <item value="12-Junio"/>
-                <item value="13-Junio"/>
-                <item value="14-Junio"/>
-                <item value="15-Junio"/>
-                <item value="16-Junio"/>
-                <item value="17-Junio"/>
-                <item value="18-Junio"/>
-                <item value="19-Junio"/>
-                <item value="20-Junio"/>
-                <item value="21-Junio"/>
-                <item value="22-Junio"/>
-                <item value="23-Junio"/>
-                <item value="24-Junio"/>
-                <item value="25-Junio"/>
-                <item value="26-Junio"/>
-                <item value="27-Junio"/>
-                <item value="28-Junio"/>
-                <item value="29-Junio"/>
-                <item value="30-Junio"/>
-                <item value="1-Julio"/>
-                <item value="2-Julio"/>
-                <item value="3-Julio"/>
-                <item value="4-Julio"/>
-                <item value="5-Julio"/>
-                <item value="6-Julio"/>
-                <item value="7-Julio"/>
-                <item value="8-Julio"/>
-                <item value="9-Julio"/>
-                <item value="10-Julio"/>
-                <item value="11-Julio"/>
-                <item value="12-Julio"/>
-                <item value="13-Julio"/>
-                <item value="14-Julio"/>
-                <item value="15-Julio"/>
-                <item value="16-Julio"/>
-                <item value="17-Julio"/>
-                <item value="18-Julio"/>
-                <item value="19-Julio"/>
-                <item value="20-Julio"/>
-                <item value="21-Julio"/>
-                <item value="22-Julio"/>
-                <item value="23-Julio"/>
-                <item value="24-Julio"/>
-                <item value="25-Julio"/>
-                <item value="26-Julio"/>
-                <item value="27-Julio"/>
-                <item value="28-Julio"/>
-                <item value="29-Julio"/>
-                <item value="30-Julio"/>
-                <item value="31-Julio"/>
-                <item value="1-Agosto"/>
-                <item value="2-Agosto"/>
-                <item value="3-Agosto"/>
-                <item value="4-Agosto"/>
-                <item value="5-Agosto"/>
-                <item value="6-Agosto"/>
-                <item value="7-Agosto"/>
-                <item value="8-Agosto"/>
-                <item value="9-Agosto"/>
-                <item value="10-Agosto"/>
-                <item value="11-Agosto"/>
-                <item value="12-Agosto"/>
-                <item value="13-Agosto"/>
-                <item value="14-Agosto"/>
-                <item value="15-Agosto"/>
-                <item value="16-Agosto"/>
-                <item value="17-Agosto"/>
-                <item value="18-Agosto"/>
-                <item value="19-Agosto"/>
-                <item value="20-Agosto"/>
-                <item value="21-Agosto"/>
-                <item value="22-Agosto"/>
-                <item value="23-Agosto"/>
-                <item value="24-Agosto"/>
-                <item value="25-Agosto"/>
-                <item value="26-Agosto"/>
-                <item value="27-Agosto"/>
-                <item value="28-Agosto"/>
-                <item value="29-Agosto"/>
-                <item value="30-Agosto"/>
-                <item value="31-Agosto"/>
-                <item value="1-Septiembre"/>
-                <item value="2-Septiembre"/>
-                <item value="3-Septiembre"/>
-                <item value="4-Septiembre"/>
-                <item value="5-Septiembre"/>
-                <item value="6-Septiembre"/>
-                <item value="7-Septiembre"/>
-                <item value="8-Septiembre"/>
-                <item value="9-Septiembre"/>
-                <item value="10-Septiembre"/>
-                <item value="11-Septiembre"/>
-                <item value="12-Septiembre"/>
-                <item value="13-Septiembre"/>
-                <item value="14-Septiembre"/>
-                <item value="15-Septiembre"/>
-                <item value="16-Septiembre"/>
-                <item value="17-Septiembre"/>
-                <item value="18-Septiembre"/>
-                <item value="19-Septiembre"/>
-                <item value="20-Septiembre"/>
-                <item value="21-Septiembre"/>
-                <item value="22-Septiembre"/>
-                <item value="23-Septiembre"/>
-                <item value="24-Septiembre"/>
-                <item value="25-Septiembre"/>
-                <item value="26-Septiembre"/>
-                <item value="27-Septiembre"/>
-                <item value="28-Septiembre"/>
-                <item value="29-Septiembre"/>
-                <item value="30-Septiembre"/>
-                <item value="1-Octubre"/>
-                <item value="2-Octubre"/>
-                <item value="3-Octubre"/>
-                <item value="4-Octubre"/>
-                <item value="5-Octubre"/>
-                <item value="6-Octubre"/>
-                <item value="7-Octubre"/>
-                <item value="8-Octubre"/>
-                <item value="9-Octubre"/>
-                <item value="10-Octubre"/>
-                <item value="11-Octubre"/>
-                <item value="12-Octubre"/>
-                <item value="13-Octubre"/>
-                <item value="14-Octubre"/>
-                <item value="15-Octubre"/>
-                <item value="16-Octubre"/>
-                <item value="17-Octubre"/>
-                <item value="18-Octubre"/>
-                <item value="19-Octubre"/>
-                <item value="20-Octubre"/>
-                <item value="21-Octubre"/>
-                <item value="22-Octubre"/>
-                <item value="23-Octubre"/>
-                <item value="24-Octubre"/>
-                <item value="25-Octubre"/>
-                <item value="26-Octubre"/>
-                <item value="27-Octubre"/>
-                <item value="28-Octubre"/>
-                <item value="29-Octubre"/>
-                <item value="30-Octubre"/>
-                <item value="31-Octubre"/>
-                <item value="1-Noviembre"/>
-                <item value="2-Noviembre"/>
-                <item value="3-Noviembre"/>
-                <item value="4-Noviembre"/>
-                <item value="5-Noviembre"/>
-                <item value="6-Noviembre"/>
-                <item value="7-Noviembre"/>
-                <item value="8-Noviembre"/>
-                <item value="9-Noviembre"/>
-                <item value="10-Noviembre"/>
-                <item value="11-Noviembre"/>
-                <item value="12-Noviembre"/>
-                <item value="13-Noviembre"/>
-                <item value="14-Noviembre"/>
-                <item value="15-Noviembre"/>
-                <item value="16-Noviembre"/>
-                <item value="17-Noviembre"/>
-                <item value="18-Noviembre"/>
-                <item value="19-Noviembre"/>
-                <item value="20-Noviembre"/>
-                <item value="21-Noviembre"/>
-                <item value="22-Noviembre"/>
-                <item value="23-Noviembre"/>
-                <item value="24-Noviembre"/>
-                <item value="25-Noviembre"/>
-                <item value="26-Noviembre"/>
-                <item value="27-Noviembre"/>
-                <item value="28-Noviembre"/>
-                <item value="29-Noviembre"/>
-                <item value="30-Noviembre"/>
-                <item value="1-Diciembre"/>
-                <item value="2-Diciembre"/>
-                <item value="3-Diciembre"/>
-                <item value="4-Diciembre"/>
-                <item value="5-Diciembre"/>
-                <item value="6-Diciembre"/>
-                <item value="7-Diciembre"/>
-                <item value="8-Diciembre"/>
-                <item value="9-Diciembre"/>
-                <item value="10-Diciembre"/>
-                <item value="11-Diciembre"/>
-                <item value="12-Diciembre"/>
-                <item value="13-Diciembre"/>
-                <item value="14-Diciembre"/>
-                <item value="15-Diciembre"/>
-                <item value="16-Diciembre"/>
-                <item value="17-Diciembre"/>
-                <item value="18-Diciembre"/>
-                <item value="19-Diciembre"/>
-                <item value="20-Diciembre"/>
-                <item value="21-Diciembre"/>
-                <item value="22-Diciembre"/>
-                <item value="23-Diciembre"/>
-                <item value="24-Diciembre"/>
-                <item value="25-Diciembre"/>
-                <item value="26-Diciembre"/>
-                <item value="27-Diciembre"/>
-                <item value="28-Diciembre"/>
-                <item value="29-Diciembre"/>
-                <item value="30-Diciembre"/>
-                <item value="31-Diciembre"/>
-              </model>
-            </properties>
-          </component>
-          <component id="921d2" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Hasta"/>
-            </properties>
-          </component>
-          <component id="58fb8" class="javax.swing.JComboBox" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <model>
-                <item value="2025"/>
-              </model>
-            </properties>
-          </component>
-          <component id="b4f13" class="javax.swing.JComboBox" default-binding="true">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <model>
-                <item value="1-Enero"/>
-                <item value="2-Enero"/>
-                <item value="3-Enero"/>
-                <item value="4-Enero"/>
-                <item value="5-Enero"/>
-                <item value="6-Enero"/>
-                <item value="7-Enero"/>
-                <item value="8-Enero"/>
-                <item value="9-Enero"/>
-                <item value="10-Enero"/>
-                <item value="11-Enero"/>
-                <item value="12-Enero"/>
-                <item value="13-Enero"/>
-                <item value="14-Enero"/>
-                <item value="15-Enero"/>
-                <item value="16-Enero"/>
-                <item value="17-Enero"/>
-                <item value="18-Enero"/>
-                <item value="19-Enero"/>
-                <item value="20-Enero"/>
-                <item value="21-Enero"/>
-                <item value="22-Enero"/>
-                <item value="23-Enero"/>
-                <item value="24-Enero"/>
-                <item value="25-Enero"/>
-                <item value="26-Enero"/>
-                <item value="27-Enero"/>
-                <item value="28-Enero"/>
-                <item value="29-Enero"/>
-                <item value="30-Enero"/>
-                <item value="31-Enero"/>
-                <item value="1-Febrero"/>
-                <item value="2-Febrero"/>
-                <item value="3-Febrero"/>
-                <item value="4-Febrero"/>
-                <item value="5-Febrero"/>
-                <item value="6-Febrero"/>
-                <item value="7-Febrero"/>
-                <item value="8-Febrero"/>
-                <item value="9-Febrero"/>
-                <item value="10-Febrero"/>
-                <item value="11-Febrero"/>
-                <item value="12-Febrero"/>
-                <item value="13-Febrero"/>
-                <item value="14-Febrero"/>
-                <item value="15-Febrero"/>
-                <item value="16-Febrero"/>
-                <item value="17-Febrero"/>
-                <item value="18-Febrero"/>
-                <item value="19-Febrero"/>
-                <item value="20-Febrero"/>
-                <item value="21-Febrero"/>
-                <item value="22-Febrero"/>
-                <item value="23-Febrero"/>
-                <item value="24-Febrero"/>
-                <item value="25-Febrero"/>
-                <item value="26-Febrero"/>
-                <item value="27-Febrero"/>
-                <item value="28-Febrero"/>
-                <item value="1-Marzo"/>
-                <item value="2-Marzo"/>
-                <item value="3-Marzo"/>
-                <item value="4-Marzo"/>
-                <item value="5-Marzo"/>
-                <item value="6-Marzo"/>
-                <item value="7-Marzo"/>
-                <item value="8-Marzo"/>
-                <item value="9-Marzo"/>
-                <item value="10-Marzo"/>
-                <item value="11-Marzo"/>
-                <item value="12-Marzo"/>
-                <item value="13-Marzo"/>
-                <item value="14-Marzo"/>
-                <item value="15-Marzo"/>
-                <item value="16-Marzo"/>
-                <item value="17-Marzo"/>
-                <item value="18-Marzo"/>
-                <item value="19-Marzo"/>
-                <item value="20-Marzo"/>
-                <item value="21-Marzo"/>
-                <item value="22-Marzo"/>
-                <item value="23-Marzo"/>
-                <item value="24-Marzo"/>
-                <item value="25-Marzo"/>
-                <item value="26-Marzo"/>
-                <item value="27-Marzo"/>
-                <item value="28-Marzo"/>
-                <item value="29-Marzo"/>
-                <item value="30-Marzo"/>
-                <item value="31-Marzo"/>
-                <item value="1-Abril"/>
-                <item value="2-Abril"/>
-                <item value="3-Abril"/>
-                <item value="4-Abril"/>
-                <item value="5-Abril"/>
-                <item value="6-Abril"/>
-                <item value="7-Abril"/>
-                <item value="8-Abril"/>
-                <item value="9-Abril"/>
-                <item value="10-Abril"/>
-                <item value="11-Abril"/>
-                <item value="12-Abril"/>
-                <item value="13-Abril"/>
-                <item value="14-Abril"/>
-                <item value="15-Abril"/>
-                <item value="16-Abril"/>
-                <item value="17-Abril"/>
-                <item value="18-Abril"/>
-                <item value="19-Abril"/>
-                <item value="20-Abril"/>
-                <item value="21-Abril"/>
-                <item value="22-Abril"/>
-                <item value="23-Abril"/>
-                <item value="24-Abril"/>
-                <item value="25-Abril"/>
-                <item value="26-Abril"/>
-                <item value="27-Abril"/>
-                <item value="28-Abril"/>
-                <item value="29-Abril"/>
-                <item value="30-Abril"/>
-                <item value="1-Mayo"/>
-                <item value="2-Mayo"/>
-                <item value="3-Mayo"/>
-                <item value="4-Mayo"/>
-                <item value="5-Mayo"/>
-                <item value="6-Mayo"/>
-                <item value="7-Mayo"/>
-                <item value="8-Mayo"/>
-                <item value="9-Mayo"/>
-                <item value="10-Mayo"/>
-                <item value="11-Mayo"/>
-                <item value="12-Mayo"/>
-                <item value="13-Mayo"/>
-                <item value="14-Mayo"/>
-                <item value="15-Mayo"/>
-                <item value="16-Mayo"/>
-                <item value="17-Mayo"/>
-                <item value="18-Mayo"/>
-                <item value="19-Mayo"/>
-                <item value="20-Mayo"/>
-                <item value="21-Mayo"/>
-                <item value="22-Mayo"/>
-                <item value="23-Mayo"/>
-                <item value="24-Mayo"/>
-                <item value="25-Mayo"/>
-                <item value="26-Mayo"/>
-                <item value="27-Mayo"/>
-                <item value="28-Mayo"/>
-                <item value="29-Mayo"/>
-                <item value="30-Mayo"/>
-                <item value="31-Mayo"/>
-                <item value="1-Junio"/>
-                <item value="2-Junio"/>
-                <item value="3-Junio"/>
-                <item value="4-Junio"/>
-                <item value="5-Junio"/>
-                <item value="6-Junio"/>
-                <item value="7-Junio"/>
-                <item value="8-Junio"/>
-                <item value="9-Junio"/>
-                <item value="10-Junio"/>
-                <item value="11-Junio"/>
-                <item value="12-Junio"/>
-                <item value="13-Junio"/>
-                <item value="14-Junio"/>
-                <item value="15-Junio"/>
-                <item value="16-Junio"/>
-                <item value="17-Junio"/>
-                <item value="18-Junio"/>
-                <item value="19-Junio"/>
-                <item value="20-Junio"/>
-                <item value="21-Junio"/>
-                <item value="22-Junio"/>
-                <item value="23-Junio"/>
-                <item value="24-Junio"/>
-                <item value="25-Junio"/>
-                <item value="26-Junio"/>
-                <item value="27-Junio"/>
-                <item value="28-Junio"/>
-                <item value="29-Junio"/>
-                <item value="30-Junio"/>
-                <item value="1-Julio"/>
-                <item value="2-Julio"/>
-                <item value="3-Julio"/>
-                <item value="4-Julio"/>
-                <item value="5-Julio"/>
-                <item value="6-Julio"/>
-                <item value="7-Julio"/>
-                <item value="8-Julio"/>
-                <item value="9-Julio"/>
-                <item value="10-Julio"/>
-                <item value="11-Julio"/>
-                <item value="12-Julio"/>
-                <item value="13-Julio"/>
-                <item value="14-Julio"/>
-                <item value="15-Julio"/>
-                <item value="16-Julio"/>
-                <item value="17-Julio"/>
-                <item value="18-Julio"/>
-                <item value="19-Julio"/>
-                <item value="20-Julio"/>
-                <item value="21-Julio"/>
-                <item value="22-Julio"/>
-                <item value="23-Julio"/>
-                <item value="24-Julio"/>
-                <item value="25-Julio"/>
-                <item value="26-Julio"/>
-                <item value="27-Julio"/>
-                <item value="28-Julio"/>
-                <item value="29-Julio"/>
-                <item value="30-Julio"/>
-                <item value="31-Julio"/>
-                <item value="1-Agosto"/>
-                <item value="2-Agosto"/>
-                <item value="3-Agosto"/>
-                <item value="4-Agosto"/>
-                <item value="5-Agosto"/>
-                <item value="6-Agosto"/>
-                <item value="7-Agosto"/>
-                <item value="8-Agosto"/>
-                <item value="9-Agosto"/>
-                <item value="10-Agosto"/>
-                <item value="11-Agosto"/>
-                <item value="12-Agosto"/>
-                <item value="13-Agosto"/>
-                <item value="14-Agosto"/>
-                <item value="15-Agosto"/>
-                <item value="16-Agosto"/>
-                <item value="17-Agosto"/>
-                <item value="18-Agosto"/>
-                <item value="19-Agosto"/>
-                <item value="20-Agosto"/>
-                <item value="21-Agosto"/>
-                <item value="22-Agosto"/>
-                <item value="23-Agosto"/>
-                <item value="24-Agosto"/>
-                <item value="25-Agosto"/>
-                <item value="26-Agosto"/>
-                <item value="27-Agosto"/>
-                <item value="28-Agosto"/>
-                <item value="29-Agosto"/>
-                <item value="30-Agosto"/>
-                <item value="31-Agosto"/>
-                <item value="1-Septiembre"/>
-                <item value="2-Septiembre"/>
-                <item value="3-Septiembre"/>
-                <item value="4-Septiembre"/>
-                <item value="5-Septiembre"/>
-                <item value="6-Septiembre"/>
-                <item value="7-Septiembre"/>
-                <item value="8-Septiembre"/>
-                <item value="9-Septiembre"/>
-                <item value="10-Septiembre"/>
-                <item value="11-Septiembre"/>
-                <item value="12-Septiembre"/>
-                <item value="13-Septiembre"/>
-                <item value="14-Septiembre"/>
-                <item value="15-Septiembre"/>
-                <item value="16-Septiembre"/>
-                <item value="17-Septiembre"/>
-                <item value="18-Septiembre"/>
-                <item value="19-Septiembre"/>
-                <item value="20-Septiembre"/>
-                <item value="21-Septiembre"/>
-                <item value="22-Septiembre"/>
-                <item value="23-Septiembre"/>
-                <item value="24-Septiembre"/>
-                <item value="25-Septiembre"/>
-                <item value="26-Septiembre"/>
-                <item value="27-Septiembre"/>
-                <item value="28-Septiembre"/>
-                <item value="29-Septiembre"/>
-                <item value="30-Septiembre"/>
-                <item value="1-Octubre"/>
-                <item value="2-Octubre"/>
-                <item value="3-Octubre"/>
-                <item value="4-Octubre"/>
-                <item value="5-Octubre"/>
-                <item value="6-Octubre"/>
-                <item value="7-Octubre"/>
-                <item value="8-Octubre"/>
-                <item value="9-Octubre"/>
-                <item value="10-Octubre"/>
-                <item value="11-Octubre"/>
-                <item value="12-Octubre"/>
-                <item value="13-Octubre"/>
-                <item value="14-Octubre"/>
-                <item value="15-Octubre"/>
-                <item value="16-Octubre"/>
-                <item value="17-Octubre"/>
-                <item value="18-Octubre"/>
-                <item value="19-Octubre"/>
-                <item value="20-Octubre"/>
-                <item value="21-Octubre"/>
-                <item value="22-Octubre"/>
-                <item value="23-Octubre"/>
-                <item value="24-Octubre"/>
-                <item value="25-Octubre"/>
-                <item value="26-Octubre"/>
-                <item value="27-Octubre"/>
-                <item value="28-Octubre"/>
-                <item value="29-Octubre"/>
-                <item value="30-Octubre"/>
-                <item value="31-Octubre"/>
-                <item value="1-Noviembre"/>
-                <item value="2-Noviembre"/>
-                <item value="3-Noviembre"/>
-                <item value="4-Noviembre"/>
-                <item value="5-Noviembre"/>
-                <item value="6-Noviembre"/>
-                <item value="7-Noviembre"/>
-                <item value="8-Noviembre"/>
-                <item value="9-Noviembre"/>
-                <item value="10-Noviembre"/>
-                <item value="11-Noviembre"/>
-                <item value="12-Noviembre"/>
-                <item value="13-Noviembre"/>
-                <item value="14-Noviembre"/>
-                <item value="15-Noviembre"/>
-                <item value="16-Noviembre"/>
-                <item value="17-Noviembre"/>
-                <item value="18-Noviembre"/>
-                <item value="19-Noviembre"/>
-                <item value="20-Noviembre"/>
-                <item value="21-Noviembre"/>
-                <item value="22-Noviembre"/>
-                <item value="23-Noviembre"/>
-                <item value="24-Noviembre"/>
-                <item value="25-Noviembre"/>
-                <item value="26-Noviembre"/>
-                <item value="27-Noviembre"/>
-                <item value="28-Noviembre"/>
-                <item value="29-Noviembre"/>
-                <item value="30-Noviembre"/>
-                <item value="1-Diciembre"/>
-                <item value="2-Diciembre"/>
-                <item value="3-Diciembre"/>
-                <item value="4-Diciembre"/>
-                <item value="5-Diciembre"/>
-                <item value="6-Diciembre"/>
-                <item value="7-Diciembre"/>
-                <item value="8-Diciembre"/>
-                <item value="9-Diciembre"/>
-                <item value="10-Diciembre"/>
-                <item value="11-Diciembre"/>
-                <item value="12-Diciembre"/>
-                <item value="13-Diciembre"/>
-                <item value="14-Diciembre"/>
-                <item value="15-Diciembre"/>
-                <item value="16-Diciembre"/>
-                <item value="17-Diciembre"/>
-                <item value="18-Diciembre"/>
-                <item value="19-Diciembre"/>
-                <item value="20-Diciembre"/>
-                <item value="21-Diciembre"/>
-                <item value="22-Diciembre"/>
-                <item value="23-Diciembre"/>
-                <item value="24-Diciembre"/>
-                <item value="25-Diciembre"/>
-                <item value="26-Diciembre"/>
-                <item value="27-Diciembre"/>
-                <item value="28-Diciembre"/>
-                <item value="29-Diciembre"/>
-                <item value="30-Diciembre"/>
-                <item value="31-Diciembre"/>
-              </model>
-            </properties>
-          </component>
-          <component id="603db" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Medicamentos"/>
-            </properties>
-          </component>
-          <component id="c8bde" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <model>
-                <item value="Paracetamol"/>
-                <item value="Ibuprofeno"/>
-                <item value="Amoxicilina"/>
-                <item value="Omeprazol"/>
-                <item value="Losartán"/>
-                <item value="Metformina"/>
-                <item value="Salbutamol"/>
-                <item value="Atorvastatina"/>
-                <item value="Prednisona"/>
-                <item value="Cetirizina"/>
-              </model>
-            </properties>
-          </component>
-          <component id="e3d11" class="javax.swing.JButton" binding="OKButton" default-binding="true">
-            <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-6357091"/>
-              <text value="OK"/>
-            </properties>
-          </component>
-          <scrollpane id="60628">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children>
-              <component id="144df" class="javax.swing.JTable" binding="tablaMedicamentos">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
+            <children/>
+          </grid>
         </children>
       </grid>
     </children>

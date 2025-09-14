@@ -87,13 +87,14 @@ public class ApplicationLogIn {
         sistema.presentation.prescribir.Controller prescribirController = new sistema.presentation.prescribir.Controller(prescribirView, prescribirModel);
         prescribirView.setModel(prescribirModel);
         prescribirView.setController(prescribirController);
-/*
+
         // Dashboard
+        sistema.presentation.dashboard.Model dashboardModel = new sistema.presentation.dashboard.Model();
         sistema.presentation.dashboard.View dashboardView = new sistema.presentation.dashboard.View();
         sistema.presentation.dashboard.Controller dashboardController = new sistema.presentation.dashboard.Controller(dashboardView, dashboardModel);
         dashboardView.setModel(dashboardModel);
         dashboardView.setController(dashboardController);
-*/
+
         //Historico
         sistema.presentation.historico.Model historicoModel = new sistema.presentation.historico.Model();
         sistema.presentation.historico.View historicoView = new sistema.presentation.historico.View();
@@ -119,14 +120,14 @@ public class ApplicationLogIn {
                 tabbedPane.addTab("Farmaceutas", farmaceutasView.getPanel());
                 tabbedPane.addTab("Pacientes", pacientesView.getPanel());
                 tabbedPane.addTab("Medicamentos", medicamentosView.getPanel());
-                //tabbedPane.addTab("Dashboard", dashboardView.getPanel());
+                tabbedPane.addTab("Dashboard", dashboardView.getPanel());
                 tabbedPane.addTab("Histórico", historicoView.getPanel());
                 tabbedPane.addTab("Acerca de", acercadeView.getMainPanel());
                 break;
 
             case MEDICO:
                 tabbedPane.addTab("Prescribir", prescribirView.getPanel());
-                //tabbedPane.addTab("Dashboard", dashboardView.getPanel());
+                tabbedPane.addTab("Dashboard", dashboardView.getPanel());
                 tabbedPane.addTab("Histórico", historicoView.getPanel());
                 tabbedPane.addTab("Acerca de", acercadeView.getMainPanel());
                 break;
@@ -134,7 +135,7 @@ public class ApplicationLogIn {
             case FARMACEUTA: //por terminar
                 tabbedPane.addTab("Histórico", historicoView.getPanel());
                 tabbedPane.addTab("Despacho", despachoView.getPanel());
-                //tabbedPane.addTab("Dashboard", dashboardView.getPanel());
+                tabbedPane.addTab("Dashboard", dashboardView.getPanel());
                 tabbedPane.addTab("Acerca de", acercadeView.getMainPanel());
                 break;
         }

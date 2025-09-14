@@ -1,12 +1,240 @@
 package sistema.presentation.dashboard;
 
-import javax.swing.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
-public class View {
+import sistema.logic.entities.Medicamento;
+import sistema.logic.entities.enums.EstadoReceta;
+
+import javax.swing.*;
+import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.List;
+import java.util.Map;
+
+public class View implements PropertyChangeListener {
     private JPanel panel1;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
+    private JComboBox<String> comboBoxDesdeAño;
+    private JComboBox<String> comboBoxDesdeMes;
+    private JComboBox<String> comboBoxMedicamento;
     private JButton OKButton;
     private JTable tablaMedicamentos;
+    private JPanel medicamentosPanel;
+    private JPanel medicamentosLineGraph;
+    private JPanel datosPanel;
+    private JPanel recetasPanel;
+    private JPanel recetasPieGraph;
+    private JComboBox<String> comboBoxHastaAño;
+    private JComboBox<String> comboBoxHastaMes;
+
+    private Model model;
+    private Controller controller;
+    private TableModel tableModel;
+
+    // Chart components
+    private ChartPanel lineChartPanel;
+    private ChartPanel pieChartPanel;
+
+    public View() {
+        setupComponents();
+        setupEventListeners();
+        initializeChartPanels();
+    }
+
+    private void setupComponents() {
+        // Setup year combos (2024 onwards)
+        for (int year = 2024; year <= 2030; year++) {
+            comboBoxDesdeAño.addItem(String.valueOf(year));
+            comboBoxHastaAño.addItem(String.valueOf(year));
+        }
+
+        // Setup month combos
+        String[] months = {"1-Enero", "2-Febrero", "3-Marzo", "4-Abril", "5-Mayo", "6-Junio",
+                "7-Julio", "8-Agosto", "9-Septiembre", "10-Octubre", "11-Noviembre", "12-Diciembre"};
+
+        for (String month : months) {
+            comboBoxDesdeMes.addItem(month);
+            comboBoxHastaMes.addItem(month);
+        }
+
+        // Set default selections
+        comboBoxDesdeAño.setSelectedItem("2024");
+        comboBoxDesdeMes.setSelectedIndex(0); // January
+        comboBoxHastaAño.setSelectedItem("2025");
+        comboBoxHastaMes.setSelectedIndex(11); // December
+
+        // Initialize table
+        tableModel = new TableModel(new int[]{TableModel.MEDICAMENTO, TableModel.PERIODO},
+                new java.util.ArrayList<>());
+        tablaMedicamentos.setModel(tableModel);
+    }
+
+    private void setupEventListeners() {
+        OKButton.addActionListener(e -> {
+            if (controller != null) {
+                updateFilters();
+            }
+        });
+    }
+
+    private void initializeChartPanels() {
+        // Initialize empty charts
+        medicamentosLineGraph.setLayout(new BorderLayout());
+        recetasPieGraph.setLayout(new BorderLayout());
+
+        // Create initial empty charts
+        updateLineChart(new java.util.HashMap<>(), "");
+        updatePieChart(new java.util.HashMap<>());
+    }
+
+    private void updateFilters() {
+        try {
+            int fromYear = Integer.parseInt((String) comboBoxDesdeAño.getSelectedItem());
+            int fromMonth = Integer.parseInt(((String) comboBoxDesdeMes.getSelectedItem()).split("-")[0]);
+            int toYear = Integer.parseInt((String) comboBoxHastaAño.getSelectedItem());
+            int toMonth = Integer.parseInt(((String) comboBoxHastaMes.getSelectedItem()).split("-")[0]);
+
+            String selectedMed = (String) comboBoxMedicamento.getSelectedItem();
+
+            controller.updateDateRange(fromYear, fromMonth, toYear, toMonth);
+            controller.updateMedicationFilter(selectedMed != null ? selectedMed.split(" - ")[0] : null);
+
+        } catch (Exception e) {
+            showError("Error in date selection: " + e.getMessage());
+        }
+    }
+
+    public void updateLineChart(Map<String, Long> monthlyData, String medicationName) {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (Map.Entry<String, Long> entry : monthlyData.entrySet()) {
+            dataset.addValue(entry.getValue(), medicationName, entry.getKey());
+        }
+
+        JFreeChart lineChart = ChartFactory.createLineChart(
+                "Medicamentos por Mes",
+                "Mes",
+                "Cantidad",
+                dataset
+        );
+
+        // Customize chart appearance
+        CategoryPlot plot = lineChart.getCategoryPlot();
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setRangeGridlinePaint(Color.GRAY);
+
+        if (lineChartPanel != null) {
+            medicamentosLineGraph.remove(lineChartPanel);
+        }
+
+        lineChartPanel = new ChartPanel(lineChart);
+        medicamentosLineGraph.add(lineChartPanel, BorderLayout.CENTER);
+        medicamentosLineGraph.revalidate();
+        medicamentosLineGraph.repaint();
+    }
+
+    public void updatePieChart(Map<EstadoReceta, Long> statusCounts) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        long total = statusCounts.values().stream().mapToLong(Long::longValue).sum();
+
+        for (Map.Entry<EstadoReceta, Long> entry : statusCounts.entrySet()) {
+            double percentage = total > 0 ? (entry.getValue().doubleValue() / total) * 100 : 0;
+            dataset.setValue(entry.getKey().name() + " = " + entry.getValue() +
+                            " (" + String.format("%.0f", percentage) + "%)",
+                    entry.getValue());
+        }
+
+        JFreeChart pieChart = ChartFactory.createPieChart(
+                "Recetas por Estado",
+                dataset,
+                true, // legend
+                true, // tooltips
+                false // URLs
+        );
+
+        // Customize pie chart colors
+        PiePlot plot = (PiePlot) pieChart.getPlot();
+        plot.setSectionPaint("CONFECCIONADA", Color.YELLOW);
+        plot.setSectionPaint("PROCESO", Color.RED);
+        plot.setSectionPaint("LISTA", Color.BLUE);
+        plot.setSectionPaint("ENTREGADA", Color.GREEN);
+
+        if (pieChartPanel != null) {
+            recetasPieGraph.remove(pieChartPanel);
+        }
+
+        pieChartPanel = new ChartPanel(pieChart);
+        recetasPieGraph.add(pieChartPanel, BorderLayout.CENTER);
+        recetasPieGraph.revalidate();
+        recetasPieGraph.repaint();
+    }
+
+    public void loadMedications(List<Medicamento> medications) {
+        comboBoxMedicamento.removeAllItems();
+        comboBoxMedicamento.addItem("Todos los medicamentos");
+
+        for (Medicamento med : medications) {
+            comboBoxMedicamento.addItem(med.getCodigo() + " - " + med.getNombre());
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case Model.FILTERED_DATA:
+                updateTableData();
+                break;
+        }
+    }
+
+    private void updateTableData() {
+        if (model != null && model.getFilteredPrescriptions() != null) {
+            // Create medication monthly summary for table
+            java.util.List<MedicationMonthlySummary> summaries = createMonthlySummaries();
+
+            int[] cols = {TableModel.MEDICAMENTO, TableModel.PERIODO};
+            tablaMedicamentos.setModel(new TableModel(cols, summaries));
+        }
+    }
+
+    private java.util.List<MedicationMonthlySummary> createMonthlySummaries() {
+        // This would aggregate prescription data by medication and month
+        // Simplified implementation - you might want to expand this
+        java.util.List<MedicationMonthlySummary> summaries = new java.util.ArrayList<>();
+
+        // Add sample data structure - replace with actual aggregation logic
+        if (model.getFilteredPrescriptions() != null) {
+            // Group prescriptions by medication and month, then create summaries
+            // This is a simplified version - implement full aggregation as needed
+        }
+
+        return summaries;
+    }
+
+    public void showError(String message) {
+        JOptionPane.showMessageDialog(panel1, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(panel1, message, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Standard MVC methods
+    public JPanel getPanel() { return panel1; }
+
+    public void setModel(Model model) {
+        this.model = model;
+        model.addPropertyChangeListener(this);
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

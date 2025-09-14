@@ -17,7 +17,6 @@ public class View implements PropertyChangeListener {
     private JTextField nombreField;
     private JTextField nombreBusquedaField;
     private JButton buscarButton;
-    private JButton reporteButton;
     private JButton guardarButton;
     private JButton limpiarButton;
     private JButton borrarButton;

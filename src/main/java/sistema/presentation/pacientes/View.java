@@ -20,7 +20,6 @@ public class View implements PropertyChangeListener  {
     private JButton borrarButton1;
     private JTextField pacienteBusquedaField;
     private JButton buscarButton1;
-    private JButton reporteButton1;
     private JTable pacientes;
 
     private Model model;

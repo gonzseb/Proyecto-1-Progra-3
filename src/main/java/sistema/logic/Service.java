@@ -6,8 +6,10 @@ import sistema.data.XmlPersister;
 import sistema.logic.entities.*;
 import sistema.logic.entities.enums.EstadoReceta;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Service {
@@ -297,4 +299,31 @@ public class Service {
             System.out.println("Error saving data: " + e);
         }
     }
+
+    // Para el Dashboard
+    public List<Receta> getPrescriptionsByDateRange(LocalDate startDate, LocalDate endDate) {
+        return data.getRecetas().stream()
+                .filter(r -> !r.getFechaConfeccion().isBefore(startDate) &&
+                        !r.getFechaConfeccion().isAfter(endDate))
+                .collect(Collectors.toList());
+    }
+
+    public Map<EstadoReceta, Long> getPrescriptionCountsByStatus() {
+        return data.getRecetas().stream()
+                .collect(Collectors.groupingBy(Receta::getEstado, Collectors.counting()));
+    }
+
+    public Map<String, Long> getMedicationUsageByMonth(String medicationCode,
+                                                       LocalDate startDate, LocalDate endDate) {
+        return data.getRecetas().stream()
+                .filter(r -> !r.getFechaConfeccion().isBefore(startDate) &&
+                        !r.getFechaConfeccion().isAfter(endDate))
+                .filter(r -> r.getDetalles().stream()
+                        .anyMatch(d -> d.getCodigoMedicamento().equals(medicationCode)))
+                .collect(Collectors.groupingBy(
+                        r -> r.getFechaConfeccion().getYear() + "-" +
+                                String.format("%02d", r.getFechaConfeccion().getMonthValue()),
+                        Collectors.counting()));
+    }
+
 }
