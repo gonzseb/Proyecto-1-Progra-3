@@ -78,7 +78,6 @@ public class View implements PropertyChangeListener {
         JOptionPane.showMessageDialog(mainPanel, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Getters for Controller
     public String getSearchType() {
         return (String) comboBox1.getSelectedItem();
     }

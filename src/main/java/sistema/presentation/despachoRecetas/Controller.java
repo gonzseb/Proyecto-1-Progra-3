@@ -29,7 +29,6 @@ public class Controller {
         }
 
         try {
-            // First, find and set the patient to display their name
             List<Paciente> pacientes = Service.instance().findAllPacientes();
             Paciente patient = pacientes.stream()
                     .filter(p -> p.getId().equals(patientId))
@@ -45,7 +44,6 @@ public class Controller {
 
             model.setSelectedPatient(patient);
 
-            // Find all prescriptions for this patient
             List<Receta> allRecetas = Service.instance().findAllRecetas();
             List<Receta> patientPrescriptions = allRecetas.stream()
                     .filter(r -> r.getIdPaciente().equals(patientId))
@@ -80,15 +78,12 @@ public class Controller {
                 return;
             }
 
-            // Update the prescription state
             selectedReceta.setEstado(nextState);
 
-            // If moving to ENTREGADA, set pickup date to today
             if (nextState == EstadoReceta.ENTREGADA) {
                 selectedReceta.setFechaRetiro(java.time.LocalDate.now());
             }
 
-            // Refresh the table to show updated state
             model.setPrescriptionsList(model.getPrescriptionsList());
             model.setCurrentPrescription(selectedReceta);
 
@@ -116,15 +111,12 @@ public class Controller {
                 return;
             }
 
-            // Update the prescription state
             selectedReceta.setEstado(previousState);
 
-            // If moving back from ENTREGADA, clear pickup date
             if (currentState == EstadoReceta.ENTREGADA) {
                 selectedReceta.setFechaRetiro(null);
             }
 
-            // Refresh the table to show updated state
             model.setPrescriptionsList(model.getPrescriptionsList());
             model.setCurrentPrescription(selectedReceta);
 
@@ -144,7 +136,7 @@ public class Controller {
             case LISTA:
                 return EstadoReceta.ENTREGADA;
             case ENTREGADA:
-                return null; // Already at final state
+                return null;
             default:
                 return null;
         }
@@ -180,7 +172,6 @@ public class Controller {
             Receta selectedReceta = model.getPrescriptionsList().get(selectedRow);
             model.setCurrentPrescription(selectedReceta);
 
-            // Show details in dialog
             showRecetaDetailsDialog(selectedReceta);
 
         } catch (Exception e) {
@@ -193,7 +184,6 @@ public class Controller {
         details.append("=== DETALLES DE LA RECETA ===\n\n");
         details.append("ID Receta: ").append(receta.getId()).append("\n");
 
-        // 🔎 Paciente lookup
         String pacienteNombre = "Desconocido";
         try {
             List<sistema.logic.entities.Paciente> pacientes = Service.instance().findAllPacientes();
@@ -206,7 +196,6 @@ public class Controller {
             pacienteNombre = "Error";
         }
 
-        // 🔎 Medico lookup
         String medicoNombre = "Desconocido";
         try {
             List<sistema.logic.entities.Medico> medicos = Service.instance().findAllMedicos();
@@ -240,7 +229,6 @@ public class Controller {
                 var detalle = receta.getDetalles().get(i);
                 details.append((i + 1)).append(". ");
 
-                // Look up medication name
                 String medicamentoNombre = "Desconocido";
                 if (medicamentos != null) {
                     medicamentoNombre = medicamentos.stream()
@@ -258,7 +246,6 @@ public class Controller {
             }
         }
 
-        // ✅ Build dialog
         JTextArea textArea = new JTextArea(details.toString());
         textArea.setEditable(false);
         textArea.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
@@ -267,7 +254,7 @@ public class Controller {
         scrollPane.setPreferredSize(new java.awt.Dimension(500, 400));
 
         JOptionPane.showMessageDialog(
-                view.getPanel(), // root panel from your view
+                view.getPanel(),
                 scrollPane,
                 "Detalles de Receta - " + receta.getId(),
                 JOptionPane.INFORMATION_MESSAGE

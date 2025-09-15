@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RecetaDetalle {
 
-    //@XmlIDREF
     private String codigoMedicamento; // (Medicamento medicamento)
     private int cantidad;
     private String indicaciones;

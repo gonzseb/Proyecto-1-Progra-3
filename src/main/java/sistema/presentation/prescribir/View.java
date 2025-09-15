@@ -25,10 +25,8 @@ public class View implements PropertyChangeListener {
     private Controller controller;
 
     public View() {
-        // Initialize date picker with default date (today + 7 days)
         fechaRetiro.setDate(LocalDate.now().plusDays(7));
 
-        // Setup event listeners
         setupEventListeners();
     }
 
@@ -153,7 +151,6 @@ public class View implements PropertyChangeListener {
         JOptionPane.showMessageDialog(panel1, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Getters and setters
     public JPanel getPanel() { return panel1; }
     public LocalDate getFechaRetiro() { return fechaRetiro.getDate(); }
 

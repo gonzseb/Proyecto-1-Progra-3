@@ -140,11 +140,12 @@ public class View implements PropertyChangeListener {
 
     // --- Métodos auxiliares ---
     public Farmaceuta take() {
-        Farmaceuta f = new Farmaceuta();
-        f.setId(IdFieldAdmin.getText());
-        f.setNombre(nombreField.getText());
+        // La clave se asigna automáticamente como igual al ID
+        Farmaceuta f = new Farmaceuta(IdFieldAdmin.getText(), nombreField.getText());
         return f;
     }
+
+
 
     private boolean validateForm() {
         boolean valid = true;

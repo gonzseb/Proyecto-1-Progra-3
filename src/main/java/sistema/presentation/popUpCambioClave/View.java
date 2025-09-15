@@ -36,8 +36,6 @@ public class View extends JDialog {
     private void setupEventListeners() {
         OKButton.addActionListener(e -> changePassword());
         cancelarButton.addActionListener(e -> closeDialog());
-
-        // Enter key in any password field triggers change
         passwordFieldClaveActual.addActionListener(e -> changePassword());
         passwordFieldClaveNueva.addActionListener(e -> changePassword());
         passwordFieldConfirmarClaveNueva.addActionListener(e -> changePassword());
@@ -59,10 +57,8 @@ public class View extends JDialog {
                 return;
             }
 
-            // Buscar el usuario en los datos
             Usuario user = Service.instance().read(new Usuario(usuarioId, currentPassword, null));
 
-            // Verificar contraseña actual
             if (!user.getClave().equals(currentPassword)) {
                 showError("La contraseña actual es incorrecta");
                 passwordFieldClaveActual.selectAll();
@@ -70,10 +66,8 @@ public class View extends JDialog {
                 return;
             }
 
-            // Actualizar contraseña
             user.setClave(newPassword);
 
-            // Guardar cambios
             Service.instance().stop();
 
             passwordChanged = true;

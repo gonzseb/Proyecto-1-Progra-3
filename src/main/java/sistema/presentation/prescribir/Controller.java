@@ -65,7 +65,6 @@ public class Controller {
         }
 
         try {
-            // Generate unique ID in format RECxxx
             List<Receta> recetas = Service.instance().findAllRecetas();
 
             int maxNumero = recetas.stream()
@@ -79,7 +78,7 @@ public class Controller {
                         }
                     })
                     .max()
-                    .orElse(4); // Start after 4 if no existing recipes
+                    .orElse(4);
 
             int siguienteNumero = maxNumero + 1;
             String recetaId = String.format("REC%03d", siguienteNumero); // REC005, REC006, etc.
@@ -91,7 +90,6 @@ public class Controller {
             Receta nuevaReceta = new Receta(recetaId, medicoId, pacienteId, fechaConfeccion);
             nuevaReceta.setFechaRetiro(view.getFechaRetiro());
 
-            // Add all medication details
             for (RecetaDetalle detalle : model.getMedicamentosSeleccionados()) {
                 nuevaReceta.agregarDetalle(detalle);
             }
@@ -130,7 +128,6 @@ public class Controller {
         if (selectedRow >= 0 && selectedRow < this.model.getMedicamentosSeleccionados().size()) {
             RecetaDetalle currentDetalle = this.model.getMedicamentosSeleccionados().get(selectedRow);
 
-            // Get the medication object
             Medicamento medication = Service.instance().findAllMedicamentos().stream()
                     .filter(m -> m.getCodigo().equals(currentDetalle.getCodigoMedicamento()))
                     .findFirst()
@@ -139,13 +136,11 @@ public class Controller {
             if (medication != null) {
                 JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this.view.getPanel());
 
-                // Use existing dialog in EDIT mode
                 sistema.presentation.popUpMedicamentoDetalles.View editDialog =
                         new sistema.presentation.popUpMedicamentoDetalles.View(parentFrame, medication, currentDetalle);
                 editDialog.setVisible(true);
 
                 if (editDialog.getRecetaDetalle() != null) {
-                    // Remove old detail and add updated one
                     this.model.removeMedicamento(selectedRow);
                     this.model.addMedicamento(editDialog.getRecetaDetalle());
 

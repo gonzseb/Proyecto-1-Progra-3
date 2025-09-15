@@ -20,7 +20,6 @@ public class Controller {
         view.setModel(model);
         view.setController(this);
 
-        // Load all prescriptions on startup
         loadAllRecetas();
     }
 
@@ -58,7 +57,6 @@ public class Controller {
                     break;
 
                 case "Estado":
-                    // Search by estado (case insensitive)
                     filteredRecetas = allRecetas.stream()
                             .filter(r -> r.getEstado().toString().toLowerCase().contains(searchText.toLowerCase()))
                             .collect(Collectors.toList());
@@ -88,11 +86,9 @@ public class Controller {
         }
 
         try {
-            // Get the selected receta directly from the model's list
             Receta selectedReceta = model.getList().get(selectedRow);
             model.setCurrent(selectedReceta);
 
-            // Create and show details dialog
             showRecetaDetailsDialog(selectedReceta);
 
         } catch (Exception e) {
@@ -105,7 +101,6 @@ public class Controller {
         details.append("=== DETALLES DE LA RECETA ===\n\n");
         details.append("ID Receta: ").append(receta.getId()).append("\n");
 
-        // Look up patient name
         String pacienteNombre = "Desconocido";
         try {
             List<sistema.logic.entities.Paciente> pacientes = Service.instance().findAllPacientes();
@@ -118,7 +113,6 @@ public class Controller {
             pacienteNombre = "Error";
         }
 
-        // Look up doctor name
         String medicoNombre = "Desconocido";
         try {
             List<sistema.logic.entities.Medico> medicos = Service.instance().findAllMedicos();
@@ -141,7 +135,6 @@ public class Controller {
         if (receta.getDetalles().isEmpty()) {
             details.append("No hay medicamentos registrados");
         } else {
-            // Get all medications for lookup
             List<sistema.logic.entities.Medicamento> medicamentos = null;
             try {
                 medicamentos = Service.instance().findAllMedicamentos();
@@ -153,7 +146,6 @@ public class Controller {
                 var detalle = receta.getDetalles().get(i);
                 details.append((i + 1)).append(". ");
 
-                // Look up medication name
                 String medicamentoNombre = "Desconocido";
                 if (medicamentos != null) {
                     medicamentoNombre = medicamentos.stream()
@@ -170,7 +162,6 @@ public class Controller {
             }
         }
 
-        // Show in a dialog with scroll pane for long content
         JTextArea textArea = new JTextArea(details.toString());
         textArea.setEditable(false);
         textArea.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));

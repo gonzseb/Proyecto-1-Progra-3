@@ -58,7 +58,8 @@
         <farmaceuta>
             <id>F005</id>
             <nombre>Juan Mora</nombre>
-            <clave></clave>
+            <clave>F005</clave>
+            <rol>FARMACEUTA</rol>
         </farmaceuta>
     </farmaceutas>
     <pacientes>

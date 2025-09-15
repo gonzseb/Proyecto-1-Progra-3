@@ -39,7 +39,6 @@ public class View implements PropertyChangeListener {
     private Controller controller;
     private TableModel tableModel;
 
-    // Chart components
     private ChartPanel lineChartPanel;
     private ChartPanel pieChartPanel;
 
@@ -50,13 +49,12 @@ public class View implements PropertyChangeListener {
     }
 
     private void setupComponents() {
-        // Setup year combos (2024 onwards)
+
         for (int year = 2024; year <= 2030; year++) {
             comboBoxDesdeAño.addItem(String.valueOf(year));
             comboBoxHastaAño.addItem(String.valueOf(year));
         }
 
-        // Setup month combos
         String[] months = {"1-Enero", "2-Febrero", "3-Marzo", "4-Abril", "5-Mayo", "6-Junio",
                 "7-Julio", "8-Agosto", "9-Septiembre", "10-Octubre", "11-Noviembre", "12-Diciembre"};
 
@@ -65,13 +63,11 @@ public class View implements PropertyChangeListener {
             comboBoxHastaMes.addItem(month);
         }
 
-        // Set default selections
         comboBoxDesdeAño.setSelectedItem("2024");
         comboBoxDesdeMes.setSelectedIndex(0); // January
         comboBoxHastaAño.setSelectedItem("2025");
         comboBoxHastaMes.setSelectedIndex(11); // December
 
-        // Initialize table
         tableModel = new TableModel(new int[]{TableModel.MEDICAMENTO, TableModel.PERIODO},
                 new java.util.ArrayList<>());
         tablaMedicamentos.setModel(tableModel);
@@ -86,11 +82,9 @@ public class View implements PropertyChangeListener {
     }
 
     private void initializeChartPanels() {
-        // Initialize empty charts
         medicamentosLineGraph.setLayout(new BorderLayout());
         recetasPieGraph.setLayout(new BorderLayout());
 
-        // Create initial empty charts
         updateLineChart(new java.util.HashMap<>(), "");
         updatePieChart(new java.util.HashMap<>());
     }
@@ -126,7 +120,6 @@ public class View implements PropertyChangeListener {
                 dataset
         );
 
-        // Customize chart appearance
         CategoryPlot plot = lineChart.getCategoryPlot();
         plot.setBackgroundPaint(Color.WHITE);
         plot.setRangeGridlinePaint(Color.GRAY);
@@ -161,7 +154,6 @@ public class View implements PropertyChangeListener {
                 false // URLs
         );
 
-        // Customize pie chart colors
         PiePlot plot = (PiePlot) pieChart.getPlot();
         plot.setSectionPaint("CONFECCIONADA", Color.YELLOW);
         plot.setSectionPaint("PROCESO", Color.RED);
@@ -198,7 +190,6 @@ public class View implements PropertyChangeListener {
 
     private void updateTableData() {
         if (model != null && model.getFilteredPrescriptions() != null) {
-            // Create medication monthly summary for table
             java.util.List<MedicationMonthlySummary> summaries = createMonthlySummaries();
 
             int[] cols = {TableModel.MEDICAMENTO, TableModel.PERIODO};
@@ -215,7 +206,6 @@ public class View implements PropertyChangeListener {
         JOptionPane.showMessageDialog(panel1, message, "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Standard MVC methods
     public JPanel getPanel() { return panel1; }
 
     public void setModel(Model model) {
@@ -231,7 +221,7 @@ public class View implements PropertyChangeListener {
         java.util.List<MedicationMonthlySummary> summaries = new java.util.ArrayList<>();
 
         if (model.getFilteredPrescriptions() != null) {
-            // Group by medication and month
+
             Map<String, Map<String, Long>> medicationByMonth = new java.util.HashMap<>();
 
             for (Receta receta : model.getFilteredPrescriptions()) {
@@ -241,7 +231,7 @@ public class View implements PropertyChangeListener {
                 for (sistema.logic.entities.RecetaDetalle detalle : receta.getDetalles()) {
                     String medCode = detalle.getCodigoMedicamento();
 
-                    // Get medication name
+
                     String medName = Service.instance().findAllMedicamentos().stream()
                             .filter(m -> m.getCodigo().equals(medCode))
                             .map(sistema.logic.entities.Medicamento::getNombre)
@@ -253,7 +243,6 @@ public class View implements PropertyChangeListener {
                 }
             }
 
-            // Create summaries
             for (Map.Entry<String, Map<String, Long>> medEntry : medicationByMonth.entrySet()) {
                 for (Map.Entry<String, Long> monthEntry : medEntry.getValue().entrySet()) {
                     summaries.add(new MedicationMonthlySummary(
@@ -267,6 +256,4 @@ public class View implements PropertyChangeListener {
 
         return summaries;
     }
-
-
 }

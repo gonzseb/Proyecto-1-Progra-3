@@ -32,12 +32,10 @@ public class View extends JDialog {
     }
 
     private void setupComponents() {
-        // Button listeners
         buscarButton.addActionListener(e -> searchPatients());
         OKButton.addActionListener(e -> selectPatient());
         cancelarButton.addActionListener(e -> closeDialog());
 
-        // Double-click to select patient
         pacientesTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -47,7 +45,6 @@ public class View extends JDialog {
             }
         });
 
-        // Enter in text field triggers search
         textField1.addActionListener(e -> searchPatients());
     }
 
@@ -79,12 +76,10 @@ public class View extends JDialog {
             List<Paciente> patients;
 
             if ("ID".equals(searchType)) {
-                // Search by ID - contains
                 patients = Service.instance().findAllPacientes().stream()
                         .filter(p -> p.getId().toLowerCase().contains(searchText.toLowerCase()))
                         .collect(java.util.stream.Collectors.toList());
-            } else { // "Nombre"
-                // Search by name using existing service method
+            } else {
                 patients = Service.instance().findSomePacientes(searchText);
             }
 
@@ -92,7 +87,6 @@ public class View extends JDialog {
                 JOptionPane.showMessageDialog(this,
                         "No se encontraron pacientes con " + searchType.toLowerCase() + " que contenga: " + searchText,
                         "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
-                // Keep current table, don't clear it
             } else {
                 updateTable(patients);
             }

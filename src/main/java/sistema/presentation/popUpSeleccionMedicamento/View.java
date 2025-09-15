@@ -34,16 +34,13 @@ public class View extends JDialog {
     }
 
     private void setupComponents() {
-        // Initialize combo box with search options
         comboBox1.addItem("Nombre");
         comboBox1.addItem("Código");
 
-        // Button listeners
         buscarButton.addActionListener(e -> searchMedicamentos());
         OKButton1.addActionListener(e -> selectMedicamento());
         cancelarButton.addActionListener(e -> closeDialog());
 
-        // Double-click to select medication
         tableMedicamentos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -53,7 +50,6 @@ public class View extends JDialog {
             }
         });
 
-        // Enter in text field triggers search
         textField1.addActionListener(e -> searchMedicamentos());
     }
 
@@ -85,12 +81,10 @@ public class View extends JDialog {
             List<Medicamento> medicamentos;
 
             if ("Código".equals(searchType)) {
-                // Search by codigo - contains
                 medicamentos = Service.instance().findAllMedicamentos().stream()
                         .filter(m -> m.getCodigo().toLowerCase().contains(searchText.toLowerCase()))
                         .collect(java.util.stream.Collectors.toList());
-            } else { // "Nombre"
-                // Search by name using existing service method
+            } else {
                 medicamentos = Service.instance().findSomeMedicamentos(searchText);
             }
 
@@ -98,7 +92,6 @@ public class View extends JDialog {
                 JOptionPane.showMessageDialog(this,
                         "No se encontraron medicamentos con " + searchType.toLowerCase() + " que contenga: " + searchText,
                         "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
-                // Keep current table, don't clear it
             } else {
                 updateTable(medicamentos);
             }
@@ -120,18 +113,14 @@ public class View extends JDialog {
             TableModel model = (TableModel) tableMedicamentos.getModel();
             selectedMedicamento = model.getRowAt(selectedRow);
 
-            // Close this dialog and open details dialog
             setVisible(false);
 
-            // Open details dialog
             sistema.presentation.popUpMedicamentoDetalles.View detailsDialog =
                     new sistema.presentation.popUpMedicamentoDetalles.View((JFrame)getParent(), selectedMedicamento);
             detailsDialog.setVisible(true);
 
-            // Check if details were saved
             if (detailsDialog.getRecetaDetalle() != null) {
                 confirmed = true;
-                // Store the complete RecetaDetalle instead of just Medicamento
                 this.recetaDetalle = detailsDialog.getRecetaDetalle();
             } else {
                 confirmed = false;
@@ -143,12 +132,10 @@ public class View extends JDialog {
         }
     }
 
-    // ADD this new getter method:
     public RecetaDetalle getRecetaDetalle() {
         return confirmed ? recetaDetalle : null;
     }
 
-    // Keep the existing getter for backward compatibility:
     public Medicamento getSelectedMedicamento() {
         return confirmed ? selectedMedicamento : null;
     }

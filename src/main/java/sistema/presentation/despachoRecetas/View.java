@@ -51,7 +51,6 @@ public class View implements PropertyChangeListener {
             }
         });
 
-        // Table selection listener
         tableListEstadoRecetas.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 updateButtonStates();
@@ -107,7 +106,6 @@ public class View implements PropertyChangeListener {
             TableModel tableModel = (TableModel) tableListEstadoRecetas.getModel();
             Receta selected = tableModel.getRowAt(selectedRow);
 
-            // Enable/disable buttons based on current state
             siguienteEstadoButton.setEnabled(selected.getEstado().name().equals("CONFECCIONADA") ||
                     selected.getEstado().name().equals("PROCESO") ||
                     selected.getEstado().name().equals("LISTA"));

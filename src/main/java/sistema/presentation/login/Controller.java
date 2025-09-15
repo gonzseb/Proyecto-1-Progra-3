@@ -13,7 +13,6 @@ public class Controller {
         this.view = view;
         this.model = model;
 
-        // Listeners
         this.view.addIngresarListener(e -> {
             try {
                 login();
@@ -33,7 +32,6 @@ public class Controller {
             throw new Exception("Usuario y clave requeridos");
         }
 
-        // Leer usuario del Service
         Usuario temp = new Usuario(id, clave, null);
         Usuario logged = Service.instance().read(temp);
 
@@ -41,11 +39,9 @@ public class Controller {
             throw new Exception("Usuario o clave incorrectos");
         }
 
-        // Guardar en sesión y modelo
         Sesion.setUsuario(logged);
         model.setUsuario(logged);
 
-        // Cerrar login modal
         view.dispose();
     }
 }

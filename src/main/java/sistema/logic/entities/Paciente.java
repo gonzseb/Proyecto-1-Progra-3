@@ -16,10 +16,10 @@ public class Paciente extends Persona {
     }
 
     public Paciente() {
-        super("", "");       // Llama al constructor de la clase padre con valores vacíos
-        this.edad = 0;       // Edad inicial 0
-        this.telefono = "";  // Teléfono vacío
-        this.nacimiento = ""; // Fecha de nacimiento vacía
+        super("", "");
+        this.edad = 0;
+        this.telefono = "";
+        this.nacimiento = "";
     }
 
     // Getters

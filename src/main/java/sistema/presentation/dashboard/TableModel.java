@@ -32,7 +32,6 @@ public class TableModel extends AbstractTableModel<MedicationMonthlySummary> {
     }
 }
 
-// Helper class for table data
 class MedicationMonthlySummary {
     private String medicationName;
     private String yearMonth;

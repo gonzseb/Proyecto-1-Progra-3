@@ -35,7 +35,6 @@ public class TableModel extends AbstractTableModel<Receta> {
             case ID:
                 return e.getId();
             case PACIENTE:
-                // Look up patient name by ID
                 try {
                     List<Paciente> pacientes = Service.instance().findAllPacientes();
                     return pacientes.stream()
@@ -47,7 +46,6 @@ public class TableModel extends AbstractTableModel<Receta> {
                     return "Error";
                 }
             case MEDICO:
-                // Look up doctor name by ID
                 try {
                     List<Medico> medicos = Service.instance().findAllMedicos();
                     return medicos.stream()

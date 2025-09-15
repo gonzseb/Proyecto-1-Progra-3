@@ -4,10 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-/**
- * View de Login basada en tu GUI form.
- * Ahora extiende JDialog para ser modal.
- */
 public class View extends JDialog {
 
     private JPanel mainPanel;
@@ -26,19 +22,16 @@ public class View extends JDialog {
         this.pack();
         this.setLocationRelativeTo(parent);
 
-        // Listener para botón "Ingresar"
         ingresarButton.addActionListener(e -> {
             if (controller != null) {
                 try {
                     controller.login();
-                    // Si login exitoso, el controller ya llama dispose()
                 } catch (Exception ex) {
                     mostrarError(ex.getMessage());
                 }
             }
         });
 
-        // Listener para botón "Cancelar"
         cancelarButton.addActionListener(e -> {
             textFieldUsuario.setText("");
             passwordField.setText("");
@@ -51,7 +44,7 @@ public class View extends JDialog {
             changePasswordDialog.setVisible(true);
 
             if (changePasswordDialog.wasPasswordChanged()) {
-                // handle it
+
             }
         });
 
@@ -69,7 +62,6 @@ public class View extends JDialog {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Métodos para obtener los datos ingresados
     public String getUsuario() {
         return textFieldUsuario.getText();
     }
@@ -86,13 +78,10 @@ public class View extends JDialog {
         super.dispose();
     }
 
-    // Methods for adding listeners (used by Controller)
     public void addIngresarListener(ActionListener listener) {
-        // Controller will handle this, so we can remove if not needed
     }
 
     public void addCancelarListener(ActionListener listener) {
-        // Controller will handle this, so we can remove if not needed
     }
 
 

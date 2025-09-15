@@ -21,12 +21,11 @@ public class Model extends AbstractModel {
 
     public Model() {
         super();
-        // Default to current year data
         this.startDate = LocalDate.of(2024, 1, 1);
         this.endDate = LocalDate.now();
     }
 
-    // Getters and setters
+    // Getters y setters
     public LocalDate getStartDate() { return startDate; }
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;

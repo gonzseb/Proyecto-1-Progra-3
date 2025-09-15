@@ -116,12 +116,11 @@ public class View implements PropertyChangeListener {
 
     // --- Métodos auxiliares ---
     public Medico take() {
-        Medico e = new Medico();
-        e.setId(idField.getText());
-        e.setNombre(nombreField.getText());
-        e.setEspecialidad(especialidadField.getText());
+        // La clave se asigna automáticamente como igual al ID
+        Medico e = new Medico(idField.getText(), nombreField.getText(), especialidadField.getText());
         return e;
     }
+
 
     private boolean validateForm() {
         boolean valid = true;

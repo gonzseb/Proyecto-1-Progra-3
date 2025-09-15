@@ -77,13 +77,11 @@ public class View implements PropertyChangeListener  {
                 if (validateForm()) {
                     Paciente paciente = take();
                     try {
-                        // Si el modelo ya tiene un current con el mismo ID, entonces lo actualiza
                         if (model.getCurrent() != null && !model.getCurrent().getId().isEmpty()
                                 && model.getCurrent().getId().equals(paciente.getId())) {
                             controller.update(paciente);
                             JOptionPane.showMessageDialog(panel1, "Paciente actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            // Si no, se crea
                             controller.create(paciente);
                             JOptionPane.showMessageDialog(panel1, "Paciente registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                         }
@@ -202,7 +200,7 @@ public class View implements PropertyChangeListener  {
         String[] partes = texto.split("/");
         int dia = Integer.parseInt(partes[0]);
         int mes = Integer.parseInt(partes[1]);
-        int ano = Integer.parseInt(partes[2]);
+        int año = Integer.parseInt(partes[2]);
 
         if (dia <= 0 || dia >= 32) {
             field.setBackground(ApplicationLogIn.BACKGROUND_ERROR);
@@ -215,8 +213,7 @@ public class View implements PropertyChangeListener  {
             return false;
         }
 
-        // Fecha máxima 14/09/2025
-        if (ano > 2025 || (ano == 2025 && (mes > 9 || (mes == 9 && dia > 14)))) {
+        if (año > 2025 || (año == 2025 && (mes > 9 || (mes == 9 && dia > 14)))) {
             field.setBackground(ApplicationLogIn.BACKGROUND_ERROR);
             field.setToolTipText("Fecha no puede ser posterior al 14/09/2025");
             return false;

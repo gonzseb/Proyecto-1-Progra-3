@@ -7,12 +7,10 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Farmaceuta extends Usuario {
 
-    // Constructor principal
     public Farmaceuta(String id, String nombre, String clave) {
         super(id, nombre, clave, UsuarioRol.FARMACEUTA);
     }
 
-    // Constructor de conveniencia (clave = id)
     public Farmaceuta(String id, String nombre) {
         super(id, nombre, id, UsuarioRol.FARMACEUTA);
     }

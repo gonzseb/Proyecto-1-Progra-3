@@ -17,12 +17,10 @@ public class View extends JDialog {
     private boolean saved = false;
     private boolean isEditMode = false;
 
-    // Constructor for creating new prescription (existing)
     public View(JFrame parent, Medicamento medicamento) {
         this(parent, medicamento, null);
     }
 
-    // NEW Constructor for editing existing prescription
     public View(JFrame parent, Medicamento medicamento, RecetaDetalle existingDetalle) {
         super(parent, existingDetalle == null ? "Detalles - " + medicamento.getNombre() : "Editar - " + medicamento.getNombre(), true);
         this.selectedMedicamento = medicamento;
@@ -33,7 +31,6 @@ public class View extends JDialog {
 
         setupComponents();
 
-        // If editing, load existing values
         if (isEditMode && existingDetalle != null) {
             loadExistingValues(existingDetalle);
         }
@@ -43,29 +40,24 @@ public class View extends JDialog {
     }
 
     private void setupComponents() {
-        // Setup spinners
         SpinnerNumberModel cantidadModel = new SpinnerNumberModel(1, 1, 60, 1);
         SpinnerNumberModel duracionModel = new SpinnerNumberModel(1, 1, 30, 1);
 
         spinnerCantidad.setModel(cantidadModel);
         spinnerDuracion.setModel(duracionModel);
 
-        // Setup text area
         textAreaIndicaciones.setRows(4);
         textAreaIndicaciones.setLineWrap(true);
         textAreaIndicaciones.setWrapStyleWord(true);
 
-        // Button listeners
         guardarButton.addActionListener(e -> saveDetails());
         volverButton.addActionListener(e -> closeDialog());
 
-        // Change button text for edit mode
         if (isEditMode) {
             guardarButton.setText("Actualizar");
         }
     }
 
-    // NEW method to load existing values when editing
     private void loadExistingValues(RecetaDetalle existingDetalle) {
         spinnerCantidad.setValue(existingDetalle.getCantidad());
         spinnerDuracion.setValue(existingDetalle.getDuracionDias());

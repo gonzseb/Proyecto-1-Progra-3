@@ -5,25 +5,24 @@ import sistema.logic.entities.enums.UsuarioRol;
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({Medico.class, Farmaceuta.class})
 public class Usuario extends Persona {
 
-    private String clave;     // contraseña en texto plano
+    private String clave;
     private UsuarioRol rol;   // ADMIN, MEDICO, FARMACEUTA
 
-    // Constructor principal
     public Usuario(String id, String nombre, String clave, UsuarioRol rol) {
-        super(id, nombre); // id y nombre vienen de Persona
+        super(id, nombre);
         this.clave = clave;
         this.rol = rol;
     }
 
     public Usuario() {
-        super("", "");    // llama al constructor de Persona
+        super("", "");
         this.clave = "";
         this.rol = null;
     }
 
-    // Constructor de conveniencia (clave inicial = id)
     public Usuario(String id, String nombre, UsuarioRol rol) {
         this(id, nombre, id, rol); // clave = id
     }

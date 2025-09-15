@@ -32,7 +32,6 @@ public class TableModel extends AbstractTableModel<RecetaDetalle> {
     protected Object getPropetyAt(RecetaDetalle e, int col) {
         switch (cols[col]) {
             case MEDICAMENTO:
-                // Look up medication name by code
                 try {
                     List<Medicamento> meds = Service.instance().findAllMedicamentos();
                     return meds.stream()
@@ -44,7 +43,6 @@ public class TableModel extends AbstractTableModel<RecetaDetalle> {
                     return "Error";
                 }
             case PRESENTACION:
-                // Look up medication presentation by code
                 try {
                     List<Medicamento> meds = Service.instance().findAllMedicamentos();
                     return meds.stream()

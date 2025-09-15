@@ -8,20 +8,18 @@ import javax.xml.bind.annotation.*;
 public class Medico extends Usuario {
     private String especialidad;
 
-    // Constructor principal
     public Medico(String id, String nombre, String clave, String especialidad) {
         super(id, nombre, clave, UsuarioRol.MEDICO);
         this.especialidad = especialidad;
     }
 
-    // Constructor de conveniencia (clave = id)
     public Medico(String id, String nombre, String especialidad) {
         super(id, nombre, id, UsuarioRol.MEDICO);
         this.especialidad = especialidad;
     }
 
     public Medico() {
-        super(); // llama al constructor vacío de Usuario
+        super();
     }
 
     // Getters y Setters

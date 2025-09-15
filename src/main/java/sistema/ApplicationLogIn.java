@@ -32,20 +32,20 @@ public class ApplicationLogIn {
         // Mostrar ventana de login
         doLogin();
 
-        // Si el login fue exitoso, abrir la aplicación principal
+        // Si el login fue exitoso abrir la aplicación principal
         if (Sesion.isLoggedIn()) {
             doRun();
         }
     }
 
     private static void doLogin() {
-        // Crear vista, modelo y controlador
-        View loginView = new View(null); // Pass null as parent
+        // mvc
+        View loginView = new View(null);
         Model loginModel = new Model();
         Controller loginController = new Controller(loginView, loginModel);
 
         loginView.setController(loginController);
-        loginView.setVisible(true); // Show the modal dialog
+        loginView.setVisible(true);
     }
 
     private static void doRun() {
@@ -110,9 +110,6 @@ public class ApplicationLogIn {
         // Acerca de
         sistema.presentation.acercade.View acercadeView = new sistema.presentation.acercade.View();
 
-
-
-
         // --- Agregar al tabbed pane según rol ---
         switch (Sesion.getUsuario().getRol()) {
             case ADMIN:
@@ -132,7 +129,7 @@ public class ApplicationLogIn {
                 tabbedPane.addTab("Acerca de", acercadeView.getMainPanel());
                 break;
 
-            case FARMACEUTA: //por terminar
+            case FARMACEUTA:
                 tabbedPane.addTab("Histórico", historicoView.getPanel());
                 tabbedPane.addTab("Despacho", despachoView.getPanel());
                 tabbedPane.addTab("Dashboard", dashboardView.getPanel());

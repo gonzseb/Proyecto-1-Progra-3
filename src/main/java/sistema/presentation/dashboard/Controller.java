@@ -23,10 +23,8 @@ public class Controller {
     }
 
     private void initializeData() {
-        // Load available medications for combobox
         view.loadMedications(Service.instance().findAllMedicamentos());
 
-        // Load initial data
         updateCharts();
     }
 
@@ -47,27 +45,25 @@ public class Controller {
 
     public void updateCharts() {
         try {
-            // Update prescription status pie chart
             Map<EstadoReceta, Long> statusCounts = Service.instance().getPrescriptionCountsByStatus();
             view.updatePieChart(statusCounts);
 
-            // Update medication line chart
             String selectedMed = model.getSelectedMedicamento();
             if (selectedMed != null && !selectedMed.isEmpty()) {
                 if (selectedMed.equals("Todos los medicamentos")) {
-                    // Show all medications combined
+
                     Map<String, Long> allMedicationsData = Service.instance().getAllMedicationUsageByMonth(
                             model.getStartDate(), model.getEndDate());
                     view.updateLineChart(allMedicationsData, "Todos los medicamentos");
                 } else {
-                    // Show specific medication
+
                     Map<String, Long> monthlyData = Service.instance().getMedicationUsageByMonth(
                             selectedMed, model.getStartDate(), model.getEndDate());
                     view.updateLineChart(monthlyData, selectedMed);
                 }
             }
 
-            // Update data table
+
             List<Receta> filteredData = Service.instance().getPrescriptionsByDateRange(
                     model.getStartDate(), model.getEndDate());
             model.setFilteredPrescriptions(filteredData);

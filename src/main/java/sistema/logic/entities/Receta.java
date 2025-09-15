@@ -15,11 +15,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Receta {
     private String id;
 
-    //@XmlIDREF
     private String idMedico;
-    // Sánchez dijo que esto no se hace en POO, lo correcto es tener la referencia al puntero (Medico medico)
 
-    //@XmlIDREF
     private String idPaciente; // (Paciente paciente)
 
     @XmlJavaTypeAdapter(LocalDateAdapter.class)

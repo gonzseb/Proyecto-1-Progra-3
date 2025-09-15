@@ -20,7 +20,6 @@ public class View implements PropertyChangeListener {
     private JButton buscarButton;
     private JTable medicamentos;
 
-    // -- MVC --
     private Model model;
     private Controller controller;
 
@@ -35,12 +34,10 @@ public class View implements PropertyChangeListener {
 
     public View() {
 
-        // Guardar/Actualizar
         guardarButton.addActionListener(e -> {
             if (validateForm()) {
                 Medicamento medicamento = take();
                 try {
-                    // Si el current ya tiene el mismo código, actualiza
                     if (model.getCurrent() != null && !model.getCurrent().getCodigo().isEmpty()
                             && model.getCurrent().getCodigo().equals(medicamento.getCodigo())) {
                         controller.update(medicamento);
