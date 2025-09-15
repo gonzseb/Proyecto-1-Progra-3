@@ -172,6 +172,8 @@ public class Service {
 
         // Actualizamos los datos
         existente.setNombre(paciente.getNombre());
+        existente.setTelefono(paciente.getTelefono());
+        existente.setNacimiento(paciente.getNacimiento());
     }
 
     public List<Paciente> findSomePacientes(String nombreParcial) {
@@ -320,6 +322,16 @@ public class Service {
                         !r.getFechaConfeccion().isAfter(endDate))
                 .filter(r -> r.getDetalles().stream()
                         .anyMatch(d -> d.getCodigoMedicamento().equals(medicationCode)))
+                .collect(Collectors.groupingBy(
+                        r -> r.getFechaConfeccion().getYear() + "-" +
+                                String.format("%02d", r.getFechaConfeccion().getMonthValue()),
+                        Collectors.counting()));
+    }
+
+    public Map<String, Long> getAllMedicationUsageByMonth(LocalDate startDate, LocalDate endDate) {
+        return data.getRecetas().stream()
+                .filter(r -> !r.getFechaConfeccion().isBefore(startDate) &&
+                        !r.getFechaConfeccion().isAfter(endDate))
                 .collect(Collectors.groupingBy(
                         r -> r.getFechaConfeccion().getYear() + "-" +
                                 String.format("%02d", r.getFechaConfeccion().getMonthValue()),

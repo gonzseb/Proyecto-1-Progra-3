@@ -69,6 +69,17 @@ public class View implements PropertyChangeListener {
                 showMessage("Seleccione un medicamento para descartar");
             }
         });
+
+
+        detallesButton.addActionListener(e -> {
+            int selectedRow = medicamentosTable.getSelectedRow();
+            if (selectedRow >= 0 && controller != null) {
+                controller.showPrescriptionDetails(selectedRow);
+            } else {
+                showMessage("Seleccione una prescripción para ver detalles");
+            }
+        });
+
     }
 
     @Override
@@ -87,6 +98,10 @@ public class View implements PropertyChangeListener {
         if (paciente != null && pacienteInfoLabel != null) {
             pacienteInfoLabel.setText(paciente.getNombre() + " (ID: " + paciente.getId() + ")");
         }
+    }
+
+    public JTable getMedicamentosTable() {
+        return medicamentosTable;
     }
 
     private void updateMedicamentosTable() {

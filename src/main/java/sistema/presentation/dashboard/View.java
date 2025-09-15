@@ -8,7 +8,9 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+import sistema.logic.Service;
 import sistema.logic.entities.Medicamento;
+import sistema.logic.entities.Receta;
 import sistema.logic.entities.enums.EstadoReceta;
 
 import javax.swing.*;
@@ -204,19 +206,6 @@ public class View implements PropertyChangeListener {
         }
     }
 
-    private java.util.List<MedicationMonthlySummary> createMonthlySummaries() {
-        // This would aggregate prescription data by medication and month
-        // Simplified implementation - you might want to expand this
-        java.util.List<MedicationMonthlySummary> summaries = new java.util.ArrayList<>();
-
-        // Add sample data structure - replace with actual aggregation logic
-        if (model.getFilteredPrescriptions() != null) {
-            // Group prescriptions by medication and month, then create summaries
-            // This is a simplified version - implement full aggregation as needed
-        }
-
-        return summaries;
-    }
 
     public void showError(String message) {
         JOptionPane.showMessageDialog(panel1, message, "Error", JOptionPane.ERROR_MESSAGE);
@@ -237,4 +226,47 @@ public class View implements PropertyChangeListener {
     public void setController(Controller controller) {
         this.controller = controller;
     }
+
+    private java.util.List<MedicationMonthlySummary> createMonthlySummaries() {
+        java.util.List<MedicationMonthlySummary> summaries = new java.util.ArrayList<>();
+
+        if (model.getFilteredPrescriptions() != null) {
+            // Group by medication and month
+            Map<String, Map<String, Long>> medicationByMonth = new java.util.HashMap<>();
+
+            for (Receta receta : model.getFilteredPrescriptions()) {
+                String yearMonth = receta.getFechaConfeccion().getYear() + "-" +
+                        String.format("%02d", receta.getFechaConfeccion().getMonthValue());
+
+                for (sistema.logic.entities.RecetaDetalle detalle : receta.getDetalles()) {
+                    String medCode = detalle.getCodigoMedicamento();
+
+                    // Get medication name
+                    String medName = Service.instance().findAllMedicamentos().stream()
+                            .filter(m -> m.getCodigo().equals(medCode))
+                            .map(sistema.logic.entities.Medicamento::getNombre)
+                            .findFirst()
+                            .orElse("Desconocido");
+
+                    medicationByMonth.computeIfAbsent(medName, k -> new java.util.HashMap<>())
+                            .merge(yearMonth, 1L, Long::sum);
+                }
+            }
+
+            // Create summaries
+            for (Map.Entry<String, Map<String, Long>> medEntry : medicationByMonth.entrySet()) {
+                for (Map.Entry<String, Long> monthEntry : medEntry.getValue().entrySet()) {
+                    summaries.add(new MedicationMonthlySummary(
+                            medEntry.getKey(),
+                            monthEntry.getKey(),
+                            monthEntry.getValue().intValue()
+                    ));
+                }
+            }
+        }
+
+        return summaries;
+    }
+
+
 }

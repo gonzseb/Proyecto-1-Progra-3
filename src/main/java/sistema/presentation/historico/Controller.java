@@ -57,20 +57,6 @@ public class Controller {
                             .collect(Collectors.toList());
                     break;
 
-                case "Paciente":
-                    // Search by patient ID
-                    filteredRecetas = allRecetas.stream()
-                            .filter(r -> r.getIdPaciente().toLowerCase().contains(searchText.toLowerCase()))
-                            .collect(Collectors.toList());
-                    break;
-
-                case "Médico":
-                    // Search by doctor ID
-                    filteredRecetas = allRecetas.stream()
-                            .filter(r -> r.getIdMedico().toLowerCase().contains(searchText.toLowerCase()))
-                            .collect(Collectors.toList());
-                    break;
-
                 case "Estado":
                     // Search by estado (case insensitive)
                     filteredRecetas = allRecetas.stream()

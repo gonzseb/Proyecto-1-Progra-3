@@ -33,6 +33,11 @@ public class Model extends AbstractModel {
         return currentPrescription;
     }
 
+    public void setList(List<Receta> list) {
+        this.prescriptionsList = list;
+        propertyChangeSupport.firePropertyChange(PRESCRIPTIONS_LIST, null, list);
+    }
+
     public void setCurrentPrescription(Receta currentPrescription) {
         this.currentPrescription = currentPrescription;
         propertyChangeSupport.firePropertyChange(CURRENT_PRESCRIPTION, null, currentPrescription);

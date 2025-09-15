@@ -2,7 +2,7 @@ package sistema.presentation.despachoRecetas;
 
 import sistema.logic.entities.Receta;
 import sistema.logic.entities.Paciente;
-import sistema.logic.Service;
+
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -16,6 +16,8 @@ public class View implements PropertyChangeListener {
     private JButton estadoAnteriorButton;
     private JLabel pacienteAutomatico;
     private JLabel paciente;
+    private JButton detallesButton;
+    private JButton limpiarButton;
 
     private Model model;
     private Controller controller;
@@ -55,6 +57,17 @@ public class View implements PropertyChangeListener {
                 updateButtonStates();
             }
         });
+
+        detallesButton.addActionListener(e -> {
+            int selectedRow = tableListEstadoRecetas.getSelectedRow();
+            if (selectedRow >= 0 && controller != null) {
+                controller.showPrescriptionDetails(selectedRow);
+            } else {
+                showMessage("Seleccione un medicamento de la tabla para editar sus detalles");
+            }
+        });
+
+
     }
 
     @Override
@@ -121,6 +134,10 @@ public class View implements PropertyChangeListener {
 
     public int getSelectedRow() {
         return tableListEstadoRecetas.getSelectedRow();
+    }
+
+    public void clearSearchField() {
+        textFieldIdPaciente.setText("");
     }
 
     public void clearForm() {

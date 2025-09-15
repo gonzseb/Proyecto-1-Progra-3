@@ -29,12 +29,6 @@
             <rol>MEDICO</rol>
             <especialidad>Geriatría</especialidad>
         </medico>
-        <medico>
-            <id>MED005</id>
-            <nombre>Felipe Trigueros</nombre>
-            <clave></clave>
-            <especialidad>Cardiologia</especialidad>
-        </medico>
     </medicos>
     <farmaceutas>
         <farmaceuta>
@@ -95,13 +89,6 @@
             <edad>35</edad>
             <telefono>81234567</telefono>
             <nacimiento>30-11-1988</nacimiento>
-        </paciente>
-        <paciente>
-            <id>P005</id>
-            <nombre>Pepe</nombre>
-            <edad>0</edad>
-            <telefono></telefono>
-            <nacimiento></nacimiento>
         </paciente>
     </pacientes>
     <medicamentos>
@@ -245,38 +232,6 @@
                     <cantidad>1</cantidad>
                     <indicaciones>10ml cada 8 horas para la tos seca nocturna</indicaciones>
                     <duracionDias>5</duracionDias>
-                </detalle>
-            </detalles>
-        </receta>
-        <receta>
-            <id>REC-20250914-8468</id>
-            <idMedico>MED001</idMedico>
-            <idPaciente>P002</idPaciente>
-            <fechaConfeccion>2025-09-14</fechaConfeccion>
-            <fechaRetiro>2025-09-23</fechaRetiro>
-            <estado>CONFECCIONADA</estado>
-            <detalles>
-                <detalle>
-                    <codigoMedicamento>3003</codigoMedicamento>
-                    <cantidad>3</cantidad>
-                    <indicaciones>Dia y Noche</indicaciones>
-                    <duracionDias>3</duracionDias>
-                </detalle>
-            </detalles>
-        </receta>
-        <receta>
-            <id>REC-20250914-3247</id>
-            <idMedico>MED001</idMedico>
-            <idPaciente>P005</idPaciente>
-            <fechaConfeccion>2025-09-14</fechaConfeccion>
-            <fechaRetiro>2025-09-23</fechaRetiro>
-            <estado>CONFECCIONADA</estado>
-            <detalles>
-                <detalle>
-                    <codigoMedicamento>4004</codigoMedicamento>
-                    <cantidad>4</cantidad>
-                    <indicaciones>Dia y noche</indicaciones>
-                    <duracionDias>2</duracionDias>
                 </detalle>
             </detalles>
         </receta>

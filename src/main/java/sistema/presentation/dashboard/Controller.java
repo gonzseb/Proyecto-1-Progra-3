@@ -51,21 +51,25 @@ public class Controller {
             Map<EstadoReceta, Long> statusCounts = Service.instance().getPrescriptionCountsByStatus();
             view.updatePieChart(statusCounts);
 
-            // Update medication line chart if medication is selected
-            if (model.getSelectedMedicamento() != null && !model.getSelectedMedicamento().isEmpty()) {
-                Map<String, Long> monthlyData = Service.instance().getMedicationUsageByMonth(
-                        model.getSelectedMedicamento(),
-                        model.getStartDate(),
-                        model.getEndDate()
-                );
-                view.updateLineChart(monthlyData, model.getSelectedMedicamento());
+            // Update medication line chart
+            String selectedMed = model.getSelectedMedicamento();
+            if (selectedMed != null && !selectedMed.isEmpty()) {
+                if (selectedMed.equals("Todos los medicamentos")) {
+                    // Show all medications combined
+                    Map<String, Long> allMedicationsData = Service.instance().getAllMedicationUsageByMonth(
+                            model.getStartDate(), model.getEndDate());
+                    view.updateLineChart(allMedicationsData, "Todos los medicamentos");
+                } else {
+                    // Show specific medication
+                    Map<String, Long> monthlyData = Service.instance().getMedicationUsageByMonth(
+                            selectedMed, model.getStartDate(), model.getEndDate());
+                    view.updateLineChart(monthlyData, selectedMed);
+                }
             }
 
             // Update data table
             List<Receta> filteredData = Service.instance().getPrescriptionsByDateRange(
-                    model.getStartDate(),
-                    model.getEndDate()
-            );
+                    model.getStartDate(), model.getEndDate());
             model.setFilteredPrescriptions(filteredData);
 
         } catch (Exception e) {

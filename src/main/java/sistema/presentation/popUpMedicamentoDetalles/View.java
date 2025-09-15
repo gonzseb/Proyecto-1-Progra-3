@@ -15,15 +15,29 @@ public class View extends JDialog {
     private Medicamento selectedMedicamento;
     private RecetaDetalle recetaDetalle;
     private boolean saved = false;
+    private boolean isEditMode = false;
 
+    // Constructor for creating new prescription (existing)
     public View(JFrame parent, Medicamento medicamento) {
-        super(parent, "Detalles - " + medicamento.getNombre(), true);
+        this(parent, medicamento, null);
+    }
+
+    // NEW Constructor for editing existing prescription
+    public View(JFrame parent, Medicamento medicamento, RecetaDetalle existingDetalle) {
+        super(parent, existingDetalle == null ? "Detalles - " + medicamento.getNombre() : "Editar - " + medicamento.getNombre(), true);
         this.selectedMedicamento = medicamento;
+        this.isEditMode = (existingDetalle != null);
 
         setContentPane(MainPanel);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         setupComponents();
+
+        // If editing, load existing values
+        if (isEditMode && existingDetalle != null) {
+            loadExistingValues(existingDetalle);
+        }
+
         pack();
         setLocationRelativeTo(parent);
     }
@@ -44,6 +58,18 @@ public class View extends JDialog {
         // Button listeners
         guardarButton.addActionListener(e -> saveDetails());
         volverButton.addActionListener(e -> closeDialog());
+
+        // Change button text for edit mode
+        if (isEditMode) {
+            guardarButton.setText("Actualizar");
+        }
+    }
+
+    // NEW method to load existing values when editing
+    private void loadExistingValues(RecetaDetalle existingDetalle) {
+        spinnerCantidad.setValue(existingDetalle.getCantidad());
+        spinnerDuracion.setValue(existingDetalle.getDuracionDias());
+        textAreaIndicaciones.setText(existingDetalle.getIndicaciones());
     }
 
     private void saveDetails() {

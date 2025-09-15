@@ -57,4 +57,6 @@ public class Model extends AbstractModel {
         medicamentosSeleccionados.clear();
         propertyChangeSupport.firePropertyChange(MEDICAMENTOS_LIST, null, medicamentosSeleccionados);
     }
+
+
 }

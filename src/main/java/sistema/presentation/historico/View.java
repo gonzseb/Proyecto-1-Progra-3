@@ -23,10 +23,7 @@ public class View implements PropertyChangeListener {
     }
 
     private void setupComponents() {
-        // Setup ComboBox options
         comboBox1.addItem("ID Receta");
-        comboBox1.addItem("ID Paciente");
-        comboBox1.addItem("ID Médico");
         comboBox1.addItem("Estado");
     }
 

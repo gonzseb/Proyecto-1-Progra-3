@@ -1,6 +1,7 @@
 package sistema.presentation.prescribir;
 
 import sistema.logic.Service;
+import sistema.logic.entities.Medicamento;
 import sistema.logic.entities.Receta;
 import sistema.logic.entities.RecetaDetalle;
 import sistema.logic.entities.Paciente;
@@ -8,6 +9,7 @@ import sistema.presentation.Sesion;
 import javax.swing.SwingUtilities;
 import javax.swing.JFrame;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Controller {
     private final View view;
@@ -63,8 +65,25 @@ public class Controller {
         }
 
         try {
-            // Generate unique ID
-            String recetaId = generateRecetaId();
+            // Generate unique ID in format RECxxx
+            List<Receta> recetas = Service.instance().findAllRecetas();
+
+            int maxNumero = recetas.stream()
+                    .map(Receta::getId)
+                    .filter(id -> id.startsWith("REC"))
+                    .mapToInt(id -> {
+                        try {
+                            return Integer.parseInt(id.substring(3)); // Extract number after REC
+                        } catch (NumberFormatException e) {
+                            return 0;
+                        }
+                    })
+                    .max()
+                    .orElse(4); // Start after 4 if no existing recipes
+
+            int siguienteNumero = maxNumero + 1;
+            String recetaId = String.format("REC%03d", siguienteNumero); // REC005, REC006, etc.
+
             String medicoId = Sesion.getUsuario().getId();
             String pacienteId = model.getSelectedPaciente().getId();
             LocalDate fechaConfeccion = LocalDate.now();
@@ -86,6 +105,7 @@ public class Controller {
         }
     }
 
+
     public void clearForm() {
         clear();
     }
@@ -99,5 +119,39 @@ public class Controller {
     public boolean hasUnsavedChanges() {
         return model.getSelectedPaciente() != null ||
                 !model.getMedicamentosSeleccionados().isEmpty();
+    }
+
+    public void showPrescriptionDetails(int selectedRow) {
+        if (this.view == null) {
+            System.out.println("Error: view is null");
+            return;
+        }
+
+        if (selectedRow >= 0 && selectedRow < this.model.getMedicamentosSeleccionados().size()) {
+            RecetaDetalle currentDetalle = this.model.getMedicamentosSeleccionados().get(selectedRow);
+
+            // Get the medication object
+            Medicamento medication = Service.instance().findAllMedicamentos().stream()
+                    .filter(m -> m.getCodigo().equals(currentDetalle.getCodigoMedicamento()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (medication != null) {
+                JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this.view.getPanel());
+
+                // Use existing dialog in EDIT mode
+                sistema.presentation.popUpMedicamentoDetalles.View editDialog =
+                        new sistema.presentation.popUpMedicamentoDetalles.View(parentFrame, medication, currentDetalle);
+                editDialog.setVisible(true);
+
+                if (editDialog.getRecetaDetalle() != null) {
+                    // Remove old detail and add updated one
+                    this.model.removeMedicamento(selectedRow);
+                    this.model.addMedicamento(editDialog.getRecetaDetalle());
+
+                    this.view.showMessage("Detalles del medicamento actualizados");
+                }
+            }
+        }
     }
 }
